@@ -1,0 +1,18 @@
+<h1>Como instalar o htop no debian</h1>
+
+<p>Primeiro atualize a lista de pacotes com:</p>
+
+<pre><code>    apt update
+</code></pre>
+
+<p>Agora basta instalar usando:</p>
+
+<pre><code>    apt install htop
+</code></pre>
+
+<p>Para inicialo vc precisa apenas digitar:</p>
+
+<pre><code>    htop
+</code></pre>
+
+<h2>Pronto vc já esta com o HTOP instalado</h2>
