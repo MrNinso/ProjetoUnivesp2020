@@ -1,21 +1,21 @@
-package rooms
+package managers
 
 import (
+	"ProjetoUnivesp2020/objets"
+	"ProjetoUnivesp2020/utils"
 	"fmt"
 	"github.com/gomarkdown/markdown"
 	"github.com/google/uuid"
 	"io/ioutil"
 	"os"
 	"strings"
-
-	"testsGin/utils"
 )
 
-type RoomManager []Room
+type RoomManager []objets.Room
 
 func (r RoomManager) GetRoomPosByID(id string) int {
 	for i := 0; i < len(r); i++ {
-		if r[i].getID() == id {
+		if r[i].GetID() == id {
 			return i
 		}
 	}
@@ -23,7 +23,7 @@ func (r RoomManager) GetRoomPosByID(id string) int {
 	return -1
 }
 
-func (r RoomManager) GetRoomByID(id string) *Room {
+func (r RoomManager) GetRoomByID(id string) *objets.Room {
 	if pos := r.GetRoomPosByID(id); pos != -1 {
 		return &r[pos]
 	}
@@ -34,40 +34,40 @@ func (r RoomManager) GetRoomByID(id string) *Room {
 func (r RoomManager) RenderRoomByID(id string) {
 	room := r.GetRoomByID(id)
 
-	render(room.id, room.title)
+	render(room.GetID(), room.GetTitle())
 }
 
-func (r RoomManager) RenderRoom(room *Room) {
-	render(room.id, room.title)
+func (r RoomManager) RenderRoom(room *objets.Room) {
+	render(room.GetID(), room.GetTitle())
 }
 
 func (r RoomManager) ToCSV() string {
 	str := ""
 	for _, room := range r {
-		str += fmt.Sprintf("%s,%s\n", room.id, room.title)
+		str += fmt.Sprintf("%s,%s\n", room.GetID(), room.GetTitle())
 	}
 
 	return str
 }
 
-func Render() *RoomManager {
-	files, err := ioutil.ReadDir("public/rooms")
+func RenderRooms() *RoomManager {
+	files, err := ioutil.ReadDir("./public/res/rooms")
 
 	utils.CheckPanic(&err)
 
-	if _, errTemp := os.Stat("public/temp"); !os.IsNotExist(errTemp) {
-		errTemp = os.RemoveAll("public/temp")
+	if _, errTemp := os.Stat("./public/res/temp"); !os.IsNotExist(errTemp) {
+		errTemp = os.RemoveAll("./public/res/temp")
 		utils.CheckPanic(&errTemp)
 	}
 
-	err = os.Mkdir("public/temp", 0777)
+	err = os.Mkdir("./public/res/temp", 0777)
 
 	utils.CheckPanic(&err)
 
 	rs := make(RoomManager, len(files))
 
 	for i := 0; i < len(files); i++ {
-		rs[i] = NewRoom(
+		rs[i] = objets.NewRoom(
 			render(files[i].Name(), uuid.New().String()),
 			strings.ReplaceAll(files[i].Name(), ".md", ""),
 		)
@@ -77,9 +77,8 @@ func Render() *RoomManager {
 }
 
 func render(name, id string) string {
-
-	pathIn := "public/rooms/" + name
-	pathOut := "public/temp/" + id
+	pathIn := "public/res/rooms/" + name
+	pathOut := "public/res/temp/" + id
 
 	content, err := ioutil.ReadFile(pathIn)
 

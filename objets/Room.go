@@ -1,4 +1,4 @@
-package rooms
+package objets
 
 type Room struct {
 	id    string
@@ -12,10 +12,10 @@ func NewRoom(id, title string) Room {
 	}
 }
 
-func (r Room) getID() string {
+func (r Room) GetID() string {
 	return r.id
 }
 
-func (r Room) getTitle() string {
+func (r Room) GetTitle() string {
 	return r.title
 }

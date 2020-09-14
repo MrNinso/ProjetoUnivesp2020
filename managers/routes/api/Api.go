@@ -1,9 +1,9 @@
 package api
 
 import (
+	"ProjetoUnivesp2020/managers"
 	"github.com/gin-gonic/gin"
 	"os/exec"
-	"testsGin/rooms"
 )
 
 type handle func(c *gin.Context, args string)
@@ -19,7 +19,12 @@ type handles []action
 func (hs handles) Run(c *gin.Context) {
 	if a := c.Param("ACTION"); a != "" {
 		if h := hs.GetActionByName(a); h != nil {
-			h.r(c, c.Param("ARG")) //TODO TEST ADMIN
+			if h.requireAdmin {
+				//key := c.GetHeader("KEY")
+				h.r(c, c.Param("ARG")) //TODO TEST ADMIN
+			} else {
+				h.r(c, c.Param("ARG"))
+			}
 		}
 	} else {
 		c.JSON(500, gin.H{"error": "Bad request"})
@@ -37,7 +42,7 @@ func (hs handles) GetActionByName(name string) *action {
 	return nil
 }
 
-var RoomManager = rooms.Render() //TODO
+var RoomManager = managers.RenderRooms() //TODO
 
 var Handles = &handles{
 	{"RenderRoom", func(c *gin.Context, args string) {

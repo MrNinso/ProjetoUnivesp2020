@@ -1,12 +1,13 @@
 package podman
 
 import (
+	"ProjetoUnivesp2020/objets"
 	"github.com/creack/pty"
 	"github.com/google/uuid"
 	"os/exec"
 )
 
-func StartTerminal(imageID string) (*Termianl, error) {
+func StartTerminal(imageID string) (*objets.Termianl, error) {
 	id := uuid.New().String()
 
 	c := exec.Command(
@@ -18,7 +19,7 @@ func StartTerminal(imageID string) (*Termianl, error) {
 
 	tty, err := pty.Start(c)
 
-	return &Termianl {
+	return &objets.Termianl {
 		Id: id,
 		Cmd: c,
 		TTY: tty,
