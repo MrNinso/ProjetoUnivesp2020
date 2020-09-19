@@ -1,6 +1,9 @@
 package utils
 
-import "os"
+import (
+	"os"
+	"strconv"
+)
 
 func IfNil(a, b interface{}) interface{} {
 	if a == nil {
@@ -20,4 +23,18 @@ func IfEmpty(a, b string) string {
 
 func GetEnv(a, b string) string {
 	return IfEmpty(os.Getenv(a), b)
+}
+
+func GetIntFromEnv(a string, b int) int {
+	s := GetEnv(a, "")
+
+	if s == "" {
+		return b
+	}
+
+	i, err := strconv.Atoi(s)
+
+	CheckPanic(&err)
+
+	return i
 }

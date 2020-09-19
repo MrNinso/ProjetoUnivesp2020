@@ -20,240 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41de6c9f-39a1-452f-ad11-aff0c6d950da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DBMain.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/html/Room.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/.eslintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/css/xterm.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/lib/xterm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/lib/xterm.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/AccessibilityManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Clipboard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Color.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/ColorContrastCache.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/ColorManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Dom.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Lifecycle.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Linkifier.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Linkifier2.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/LocalizableStrings.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/MouseZoneManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/RenderDebouncer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/ScreenDprMonitor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Terminal.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Types.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/Viewport.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/input/CompositionHelper.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/input/Mouse.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/input/MoveToCell.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/public/AddonManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/public/Terminal.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/BaseRenderLayer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/CharacterJoinerRegistry.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/CursorRenderLayer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/GridCache.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/LinkRenderLayer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/Renderer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/RendererUtils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/SelectionRenderLayer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/TextRenderLayer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/Types.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/atlas/BaseCharAtlas.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/atlas/CharAtlasCache.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/atlas/CharAtlasUtils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/atlas/Constants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/atlas/DynamicCharAtlas.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/atlas/LRUMap.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/atlas/Types.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/dom/DomRenderer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/renderer/dom/DomRendererRowFactory.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/selection/SelectionModel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/selection/Types.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/services/CharSizeService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/services/CoreBrowserService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/services/MouseService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/services/RenderService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/services/SelectionService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/services/Services.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/services/SoundService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/browser/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/CircularList.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/Clone.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/CoreTerminal.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/EventEmitter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/InputHandler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/Lifecycle.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/Platform.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/TypedArrayUtils.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/Types.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/WindowsMode.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/AttributeData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/Buffer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/BufferLine.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/BufferReflow.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/BufferSet.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/CellData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/Constants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/Marker.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/buffer/Types.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/data/Charsets.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/data/EscapeSequences.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/input/Keyboard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/input/TextDecoder.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/input/UnicodeV6.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/input/WriteBuffer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/parser/Constants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/parser/DcsParser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/parser/EscapeSequenceParser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/parser/OscParser.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/parser/Params.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/parser/Types.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/BufferService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/CharsetService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/CoreMouseService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/CoreService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/DirtyRowService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/InstantiationService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/LogService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/OptionsService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/ServiceRegistry.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/Services.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/services/UnicodeService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/common/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/tsconfig-base.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/src/tsconfig-library-base.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/tsconfig.all.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/typings/xterm.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_public/res/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/ConfigManager.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/database/DBManager.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/routes/terminalSocket/TerminalSocket.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/objets/User.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/Extras.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/routes/api/Api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/certs/server.crt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/certs/server.key" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/managers/auth/AuthManager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/podman/container.go" beforeDir="false" afterPath="$PROJECT_DIR$/objets/Container.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/podman/image.go" beforeDir="false" afterPath="$PROJECT_DIR$/objets/Image.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/podman/podmanAPI.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/podman/PodmanManager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/html/room/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/.eslintrc.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/css/xterm.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/lib/xterm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/lib/xterm.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/AccessibilityManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Clipboard.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Color.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/ColorContrastCache.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/ColorManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Dom.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Lifecycle.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Linkifier.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Linkifier2.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/LocalizableStrings.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/MouseZoneManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/RenderDebouncer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/ScreenDprMonitor.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Terminal.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Types.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/Viewport.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/input/CompositionHelper.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/input/Mouse.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/input/MoveToCell.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/public/AddonManager.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/public/Terminal.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/BaseRenderLayer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/CharacterJoinerRegistry.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/CursorRenderLayer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/GridCache.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/LinkRenderLayer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/Renderer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/RendererUtils.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/SelectionRenderLayer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/TextRenderLayer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/Types.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/atlas/BaseCharAtlas.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/atlas/CharAtlasCache.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/atlas/CharAtlasUtils.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/atlas/Constants.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/atlas/DynamicCharAtlas.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/atlas/LRUMap.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/atlas/Types.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/dom/DomRenderer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/renderer/dom/DomRendererRowFactory.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/selection/SelectionModel.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/selection/Types.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/services/CharSizeService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/services/CoreBrowserService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/services/MouseService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/services/RenderService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/services/SelectionService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/services/Services.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/services/SoundService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/browser/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/CircularList.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/Clone.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/CoreTerminal.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/EventEmitter.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/InputHandler.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/Lifecycle.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/Platform.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/TypedArrayUtils.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/Types.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/WindowsMode.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/AttributeData.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/Buffer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/BufferLine.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/BufferReflow.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/BufferSet.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/CellData.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/Constants.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/Marker.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/buffer/Types.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/data/Charsets.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/data/EscapeSequences.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/input/Keyboard.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/input/TextDecoder.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/input/UnicodeV6.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/input/WriteBuffer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/parser/Constants.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/parser/DcsParser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/parser/EscapeSequenceParser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/parser/OscParser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/parser/Params.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/parser/Types.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/BufferService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/CharsetService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/CoreMouseService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/CoreService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/DirtyRowService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/InstantiationService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/LogService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/OptionsService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/ServiceRegistry.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/Services.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/services/UnicodeService.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/common/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/tsconfig-base.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/src/tsconfig-library-base.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/tsconfig.all.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/node_modules/xterm/typings/xterm.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/res/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/rooms/Instalacao htop no debian.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/temp/8a712033-50d6-47eb-937c-3bf673d0315e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rooms/room.go" beforeDir="false" afterPath="$PROJECT_DIR$/objets/Room.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rooms/roomLoader.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/RoomManager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/ConfigManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/ConfigManager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/database/DBManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/database/DBManager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/routes/api/Api.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/routes/api/Api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/objets/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/objets/User.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/Extras.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Extras.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,14 +70,15 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/public/site/site/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/site" />
       <recent name="$PROJECT_DIR$/_public/html" />
       <recent name="$PROJECT_DIR$/_public/res" />
       <recent name="$PROJECT_DIR$/managers" />
       <recent name="$PROJECT_DIR$/managers/podman" />
-      <recent name="$PROJECT_DIR$/routes" />
     </key>
   </component>
   <component name="RunManager">
@@ -355,6 +132,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -412,11 +190,6 @@
           <url>file://$PROJECT_DIR$/objets/User.go</url>
           <line>28</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/managers/database/DBManager.go</url>
-          <line>14</line>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

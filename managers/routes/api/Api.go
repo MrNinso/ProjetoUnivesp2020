@@ -20,7 +20,8 @@ func (hs handles) Run(c *gin.Context) {
 	if a := c.Param("ACTION"); a != "" {
 		if h := hs.GetActionByName(a); h != nil {
 			if h.requireAdmin {
-				//key := c.GetHeader("KEY")
+				//t := c.GetHeader("TOKEN")
+				//e := c.GetHeader("EMAIL")
 				h.r(c, c.Param("ARG")) //TODO TEST ADMIN
 			} else {
 				h.r(c, c.Param("ARG"))

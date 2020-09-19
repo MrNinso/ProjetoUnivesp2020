@@ -2,22 +2,22 @@ package main
 
 import (
 	"ProjetoUnivesp2020/managers"
-	"ProjetoUnivesp2020/managers/database"
 	"ProjetoUnivesp2020/managers/podman"
 	"ProjetoUnivesp2020/managers/routes/api"
 	"ProjetoUnivesp2020/managers/routes/terminalSocket"
 	"ProjetoUnivesp2020/utils"
 	"github.com/gin-gonic/gin"
+	"math/rand"
+	"time"
 )
 
-func main() {
+func init() {
+	rand.Seed(time.Now().Unix())
 	err := podman.KillAllTerminals()
-	configs := managers.LoadConfigs()
-
-	_ = database.InitDataBase("./temp")
-
 	utils.CheckPanic(&err)
+}
 
+func main() {
 	router := gin.Default()
 
 	//router.Static("/", "./public/") TODO REDIRECT /home
@@ -30,8 +30,8 @@ func main() {
 	router.POST("/api/:ACTION/:ARG", api.Handles.Run)
 
 	_ = router.RunTLS(
-		configs.Bind,
-		configs.SSL.CertPath,
-		configs.SSL.KeyPath,
+		managers.Configs.Bind,
+		managers.Configs.SSL.CertPath,
+		managers.Configs.SSL.KeyPath,
 	)
 }

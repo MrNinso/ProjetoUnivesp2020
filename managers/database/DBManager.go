@@ -7,6 +7,8 @@ import (
 	"github.com/HouzuoGuo/tiedot/db"
 )
 
+var Conn = InitDataBase("./temp")
+
 type DB struct {
 	*db.DB
 }
@@ -15,9 +17,9 @@ func (database DB) CreateUser(user *objets.User) error {
 	if database.FindUserIdByEmail(user.Email) != -1 {
 		c := database.Use(objets.USER_COL_NAME)
 		_, err := c.Insert(*user.ToMap())
-		return  err
+		return err
 	} else {
- 		return errors.New("Usuario já existe")
+		return errors.New("Usuario já existe")
 	}
 }
 
@@ -55,6 +57,18 @@ func (database DB) DeleteUser(id int) error {
 	return database.Use(objets.IMAGE_COL_NAME).Delete(id)
 }
 
+func (database DB) UpdateUserByEmail(email string, user *objets.User) error {
+	id := database.FindUserIdByEmail(email)
+
+	if id == -1 {
+		return errors.New("Usuario Não encontrado")
+	}
+
+	c := database.Use(objets.USER_COL_NAME)
+
+	return c.Update(id, *user.ToMap())
+}
+
 func (database DB) FindUserIdByEmail(email string) int {
 	uId := -1
 
@@ -68,6 +82,21 @@ func (database DB) FindUserIdByEmail(email string) int {
 	})
 
 	return uId
+}
+
+func (database DB) FindUserByEmail(email string) *objets.User {
+	var U *objets.User
+
+	database.ForEachUser(func(id int, u *objets.User) (moveOn bool) {
+		if u.Email == email {
+			U = u
+			return false
+		}
+
+		return true
+	})
+
+	return U
 }
 
 func (database DB) FindImagePodmanIdByUId(UId string) string {
@@ -109,7 +138,7 @@ func (database DB) ForEachImage(f func(id int, i *objets.Image) (moveOn bool)) *
 }
 
 func InitDataBase(path string) *DB {
-	d,err := db.OpenDB(path)
+	d, err := db.OpenDB(path)
 
 	utils.CheckPanic(&err)
 
@@ -133,7 +162,7 @@ func createDatabase(database *DB) {
 
 	utils.CheckPanic(&err)
 
-	err = database.CreateUser(&objets.User {
+	err = database.CreateUser(&objets.User{
 		Email:    "admin@admin.com",
 		Password: "$2y$12$zMdIiP6NKSKVT/3djJUagOhPbs/9auXD1wXfds3/wUWY22zXaGjYW", //password: admin
 		Name:     "Admin User",

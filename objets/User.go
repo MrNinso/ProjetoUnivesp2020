@@ -5,14 +5,14 @@ import (
 	"encoding/json"
 )
 
-
 const USER_COL_NAME = "USERS"
 
 type User struct {
-	Email string
+	Email    string
 	Password string
-	Name string
-	IsAdmin bool
+	Name     string
+	IsAdmin  bool
+	Secret   string
 }
 
 func UserFromJson(j []byte) *User {
@@ -22,20 +22,21 @@ func UserFromJson(j []byte) *User {
 }
 
 func UserFromMap(m map[string]interface{}) *User {
-	return &User {
-		Email:    utils.IfNil(m["Email"],"").(string),
-		Password: utils.IfNil(m["Password"],"").(string),
-		Name:     utils.IfNil(m["Name"],"").(string),
-		IsAdmin:  utils.IfNil(m["IsAdmin"],false).(bool),
+	return &User{
+		Email:    utils.IfNil(m["Email"], "").(string),
+		Password: utils.IfNil(m["Password"], "").(string),
+		Name:     utils.IfNil(m["Name"], "").(string),
+		IsAdmin:  utils.IfNil(m["IsAdmin"], false).(bool),
+		Secret:   utils.IfNil(m["Secret"], "").(string),
 	}
 }
 
 func (u User) ToMap() *map[string]interface{} {
-	return &map[string]interface{} {
-		"Email": u.Email,
+	return &map[string]interface{}{
+		"Email":    u.Email,
 		"Password": u.Password,
-		"Name": u.Name,
-		"IsAdmin": u.IsAdmin,
+		"Name":     u.Name,
+		"IsAdmin":  u.IsAdmin,
+		"Secret":   u.Secret,
 	}
 }
-
