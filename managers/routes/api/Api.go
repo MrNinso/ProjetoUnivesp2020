@@ -2,6 +2,7 @@ package api
 
 import (
 	"ProjetoUnivesp2020/managers"
+	"ProjetoUnivesp2020/managers/auth"
 	"github.com/gin-gonic/gin"
 	"os/exec"
 )
@@ -12,6 +13,7 @@ type action struct {
 	name         string
 	r            handle
 	requireAdmin bool
+	requireUser  bool
 }
 
 type handles []action
@@ -19,10 +21,30 @@ type handles []action
 func (hs handles) Run(c *gin.Context) {
 	if a := c.Param("ACTION"); a != "" {
 		if h := hs.GetActionByName(a); h != nil {
-			if h.requireAdmin {
-				//t := c.GetHeader("TOKEN")
-				//e := c.GetHeader("EMAIL")
-				h.r(c, c.Param("ARG")) //TODO TEST ADMIN
+			if h.requireUser {
+				token, errToken := c.Cookie(auth.COOKIE_TOKEN)
+				email, errEmail := c.Cookie(auth.COOKIE_EMAIL)
+
+				if errToken != nil || errEmail != nil {
+					c.String(400, "Bad Request")
+					return
+				}
+
+				isValidLogin, isAdmin := auth.CheckSecretToken(email, token)
+
+				if isValidLogin {
+					if h.requireAdmin {
+						if isAdmin {
+							h.r(c, c.Param("ARG"))
+						} else {
+							c.String(403, "Forbidden")
+						}
+					} else {
+						h.r(c, c.Param("ARG"))
+					}
+				} else {
+					c.String(403, "Forbidden")
+				}
 			} else {
 				h.r(c, c.Param("ARG"))
 			}
@@ -58,8 +80,7 @@ var Handles = &handles{
 		} else {
 			c.JSON(404, gin.H{"error": "Not Found"})
 		}
-	}, true},
-
+	}, true, true},
 	{"ListRooms", func(c *gin.Context, args string) {
 		if args == "json" {
 			c.JSON(200, RoomManager)
@@ -69,7 +90,7 @@ var Handles = &handles{
 			c.JSON(400, gin.H{"error": "Bad Request"})
 		}
 
-	}, false},
+	}, false, true},
 
 	{"ListRunningContainers", func(c *gin.Context, args string) {
 		cmd := exec.Command("pomdman", "ps")
@@ -93,5 +114,54 @@ var Handles = &handles{
 			c.JSON(400, gin.H{"error": "Bad Request"})
 		}
 
-	}, false},
+	}, true, true},
+	{"Login", func(c *gin.Context, args string) {
+		token, err := c.Cookie(auth.COOKIE_TOKEN)
+
+		//login with cookie
+		if err == nil {
+			email, err := c.Cookie(auth.COOKIE_EMAIL)
+
+			if err == nil {
+				login, admin := auth.CheckSecretToken(email, token)
+				if login {
+					c.JSON(200, gin.H{
+						"isAdmin": admin,
+					})
+				} else {
+					c.String(403, "auto login failed")
+				}
+				return
+			}
+		}
+
+		//login with email and password
+		email := c.GetHeader(auth.EMAIL_HEADER_KEY)
+		token = c.GetHeader(auth.TOKEN_HEADER_KEY)
+
+		if email == "" || token == "" {
+			c.String(400, "Bad Request")
+			return
+		}
+
+		secret := auth.Login(token, email)
+
+		if secret == "" {
+			c.String(401, "Login Fail")
+			return
+		}
+
+		c.SetCookie(
+			auth.COOKIE_EMAIL, email, 0,
+			"/", c.Request.Host,
+			true, false,
+		)
+
+		c.SetCookie(
+			auth.COOKIE_TOKEN, secret, 0,
+			"/", c.Request.Host,
+			true, false,
+		)
+
+	}, false, false},
 }

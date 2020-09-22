@@ -10,7 +10,14 @@ import (
 	"strings"
 )
 
-var charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%*"
+const (
+	charSet      = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%*"
+	COOKIE_EMAIL = "3ic7k5irhh2az9hkig1oy3"
+	COOKIE_TOKEN = "97b31ae2cd1a382f19a7b95f5ef98016"
+
+	EMAIL_HEADER_KEY = "Email"
+	TOKEN_HEADER_KEY = "Token"
+)
 
 //Token = sha256(email_&_md5(senha))
 func Login(token, email string) string {
@@ -52,7 +59,7 @@ func Register(user *objets.User) error {
 	return database.Conn.CreateUser(user)
 }
 
-func CheckSecret(email, secretToken string) (bool, bool) {
+func CheckSecretToken(email, secretToken string) (bool, bool) {
 	User := database.Conn.FindUserByEmail(email)
 	if User == nil {
 		return false, false

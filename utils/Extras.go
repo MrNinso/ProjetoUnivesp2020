@@ -3,6 +3,7 @@ package utils
 import (
 	"os"
 	"strconv"
+	"strings"
 )
 
 func IfNil(a, b interface{}) interface{} {
@@ -37,4 +38,14 @@ func GetIntFromEnv(a string, b int) int {
 	CheckPanic(&err)
 
 	return i
+}
+
+func ContainsAny(a string, b []string) bool {
+	for _, c := range b {
+		if strings.Contains(a, c) {
+			return true
+		}
+	}
+
+	return false
 }

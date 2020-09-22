@@ -13,14 +13,14 @@ func StartTerminal(imageID string) (*objets.Termianl, error) {
 	c := exec.Command(
 		"podman",
 		"run",
-		"--it", "--rm", "--name", id,
+		"-it", "--rm", "--name", id,
 		imageID,
 	)
 
 	tty, err := pty.Start(c)
 
-	return &objets.Termianl {
-		Id: id,
+	return &objets.Termianl{
+		Id:  id,
 		Cmd: c,
 		TTY: tty,
 	}, err

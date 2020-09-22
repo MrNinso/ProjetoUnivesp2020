@@ -20,16 +20,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41de6c9f-39a1-452f-ad11-aff0c6d950da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/managers/auth/AuthManager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/public/logo192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/public/logo512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/public/manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/public/robots.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/src/components/TerminalCompoment.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/src/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/src/react-app-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/src/serviceWorker.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/src/setupTests.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/site/yarn.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_public/res/node_modules/xterm/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/ConfigManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/ConfigManager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/database/DBManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/database/DBManager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/auth/AuthManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/auth/AuthManager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/podman/PodmanManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/podman/PodmanManager.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/routes/api/Api.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/routes/api/Api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objets/User.go" beforeDir="false" afterPath="$PROJECT_DIR$/objets/User.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/src/Pages/Login/Login.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/assets/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/src/Pages/Rooms/Rooms.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/tslint.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/Extras.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Extras.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/logs.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Logs.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +85,10 @@
       <list>
         <option value="Go File" />
         <option value="Go Application" />
+        <option value="TypeScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -52,25 +100,33 @@
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="1hSnNOvxC9XgTkZ5B3vdLpjQoe5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultGoTemplateProperty" value="Go Application" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/public/site/site/node_modules/typescript/lib" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/public/site/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -134,6 +190,11 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Refatoração e inicio do site em angular" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refatoração e inicio do site em angular" />
+  </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
@@ -142,45 +203,55 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2595" y="340" width="560" height="406" key="#com.intellij.fileTypes.FileTypeChooser/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600026277161" />
-    <state width="1874" height="351" key="GridCell.Tab.0.bottom" timestamp="1600029618427">
+    <state width="1874" height="351" key="GridCell.Tab.0.bottom" timestamp="1600657510493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.bottom/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600029618427" />
-    <state width="1874" height="351" key="GridCell.Tab.0.center" timestamp="1600029618427">
+    <state width="1874" height="351" key="GridCell.Tab.0.bottom/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
+    <state width="1874" height="351" key="GridCell.Tab.0.center" timestamp="1600657510492">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.center/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600029618427" />
-    <state width="1874" height="351" key="GridCell.Tab.0.left" timestamp="1600029618427">
+    <state width="1874" height="351" key="GridCell.Tab.0.center/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510492" />
+    <state width="1874" height="351" key="GridCell.Tab.0.left" timestamp="1600657510492">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.left/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600029618427" />
-    <state width="1874" height="351" key="GridCell.Tab.0.right" timestamp="1600029618427">
+    <state width="1874" height="351" key="GridCell.Tab.0.left/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510492" />
+    <state width="1874" height="351" key="GridCell.Tab.0.right" timestamp="1600657510493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.right/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600029618427" />
-    <state width="1874" height="351" key="GridCell.Tab.1.bottom" timestamp="1600029618427">
+    <state width="1874" height="351" key="GridCell.Tab.0.right/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
+    <state width="1874" height="351" key="GridCell.Tab.1.bottom" timestamp="1600657510493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.bottom/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600029618427" />
-    <state width="1874" height="351" key="GridCell.Tab.1.center" timestamp="1600029618427">
+    <state width="1874" height="351" key="GridCell.Tab.1.bottom/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
+    <state width="1874" height="351" key="GridCell.Tab.1.center" timestamp="1600657510493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.center/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600029618427" />
-    <state width="1874" height="351" key="GridCell.Tab.1.left" timestamp="1600029618427">
+    <state width="1874" height="351" key="GridCell.Tab.1.center/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
+    <state width="1874" height="351" key="GridCell.Tab.1.left" timestamp="1600657510493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.left/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600029618427" />
-    <state width="1874" height="351" key="GridCell.Tab.1.right" timestamp="1600029618427">
+    <state width="1874" height="351" key="GridCell.Tab.1.left/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
+    <state width="1874" height="351" key="GridCell.Tab.1.right" timestamp="1600657510493">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.right/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600029618427" />
+    <state width="1874" height="351" key="GridCell.Tab.1.right/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
     <state width="960" height="540" key="XDebugger.FullValuePopup" timestamp="1600026970122">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state width="960" height="540" key="XDebugger.FullValuePopup/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600026970122" />
-    <state x="2543" y="239" width="672" height="678" key="search.everywhere.popup" timestamp="1600024035518">
+    <state x="2272" y="95" width="1205" height="874" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600635089765">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
+    <state x="352" y="345" width="1205" height="874" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1600626094856" />
+    <state x="2272" y="95" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600635089765" />
+    <state x="2572" y="94" width="615" height="891" key="find.popup" timestamp="1600627512591">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2572" y="94" width="615" height="891" key="find.popup/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600627512591" />
+    <state x="623" y="485" width="672" height="662" key="search.everywhere.popup" timestamp="1600625994985">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state x="623" y="485" width="672" height="662" key="search.everywhere.popup/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1600625994985" />
     <state x="2543" y="239" width="672" height="678" key="search.everywhere.popup/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600024035518" />
   </component>
   <component name="XDebuggerManager">
@@ -190,6 +261,11 @@
           <url>file://$PROJECT_DIR$/objets/User.go</url>
           <line>28</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/main.go</url>
+          <line>34</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
