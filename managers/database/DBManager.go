@@ -14,7 +14,7 @@ type DB struct {
 }
 
 func (database DB) CreateUser(user *objets.User) error {
-	if database.FindUserIdByEmail(user.Email) != -1 {
+	if database.FindUserIdByEmail(user.Email) == -1 {
 		c := database.Use(objets.USER_COL_NAME)
 		_, err := c.Insert(*user.ToMap())
 		return err
@@ -114,7 +114,7 @@ func (database DB) FindImagePodmanIdByUId(UId string) string {
 }
 
 func (database DB) ForEachUser(f func(id int, u *objets.User) (moveOn bool)) *db.Col {
-	c := database.Use(objets.IMAGE_COL_NAME)
+	c := database.Use(objets.USER_COL_NAME)
 
 	c.ForEachDoc(func(id int, doc []byte) (moveOn bool) {
 		u := objets.UserFromJson(doc)
@@ -164,8 +164,10 @@ func createDatabase(database *DB) {
 
 	err = database.CreateUser(&objets.User{
 		Email:    "admin@admin.com",
-		Password: "$2y$12$zMdIiP6NKSKVT/3djJUagOhPbs/9auXD1wXfds3/wUWY22zXaGjYW", //password: admin
+		Password: "$2a$12$k4zPsZOfqhiBXcPS2XPfEOVFUiQST0LmVuqwutEkM0IIUTDxJzM5G", //password: admin
 		Name:     "Admin User",
 		IsAdmin:  true,
 	})
+
+	utils.CheckPanic(&err)
 }

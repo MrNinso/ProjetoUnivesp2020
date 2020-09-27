@@ -19,61 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41de6c9f-39a1-452f-ad11-aff0c6d950da" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/site/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/public/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/public/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/src/components/TerminalCompoment.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/src/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/src/react-app-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/src/serviceWorker.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/src/setupTests.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/site/yarn.lock" afterDir="false" />
+    <list default="true" id="41de6c9f-39a1-452f-ad11-aff0c6d950da" name="Default Changelist" comment="Refatoração e inicio do site em react">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_public/res/node_modules/xterm/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/_public/res/node_modules/xterm/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/auth/AuthManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/auth/AuthManager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/podman/PodmanManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/podman/PodmanManager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/database/DBManager.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/database/DBManager.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/routes/api/Api.go" beforeDir="false" afterPath="$PROJECT_DIR$/managers/routes/api/Api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/.browserslistrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/angular.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/e2e/protractor.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/e2e/src/app.e2e-spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/e2e/src/app.po.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/e2e/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/site/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/src/Pages/Login/Login.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/app/app.module.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/assets/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/src/Pages/Rooms/Rooms.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/environments/environment.prod.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/environments/environment.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/polyfills.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/src/test.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/tsconfig.spec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/site/tslint.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/Extras.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Extras.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/logs.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/Logs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/Pages/Login/Login.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/src/Pages/Login/Login.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/site/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/public/site/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +110,15 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
+    <configuration name="go build ProjetoUnivesp2020" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ProjetoUnivesp2020" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <package value="ProjetoUnivesp2020" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="ProjetoUnivesp2020" />
       <working_directory value="$PROJECT_DIR$" />
@@ -193,48 +155,62 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Refatoração e inicio do site em angular" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refatoração e inicio do site em angular" />
+    <MESSAGE value="Refatoração e inicio do site em react" />
+    <MESSAGE value="login" />
+    <option name="LAST_COMMIT_MESSAGE" value="login" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="WindowStateProjectService">
-    <state x="2595" y="340" width="560" height="406" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600026277161">
+    <state x="2595" y="340" width="551" height="413" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601123795315">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2595" y="340" width="560" height="406" key="#com.intellij.fileTypes.FileTypeChooser/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600026277161" />
-    <state width="1874" height="351" key="GridCell.Tab.0.bottom" timestamp="1600657510493">
+    <state x="2595" y="340" width="551" height="413" key="#com.intellij.fileTypes.FileTypeChooser/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601123795315" />
+    <state width="1874" height="240" key="GridCell.Tab.0.bottom" timestamp="1601136167900">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="240" key="GridCell.Tab.0.bottom/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1601136167900" />
+    <state width="1874" height="240" key="GridCell.Tab.0.bottom/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601125473929" />
+    <state width="1874" height="240" key="GridCell.Tab.0.center" timestamp="1601136167900">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="240" key="GridCell.Tab.0.center/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1601136167900" />
+    <state width="1874" height="240" key="GridCell.Tab.0.center/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601125473929" />
+    <state width="1874" height="240" key="GridCell.Tab.0.left" timestamp="1601136167900">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="240" key="GridCell.Tab.0.left/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1601136167900" />
+    <state width="1874" height="240" key="GridCell.Tab.0.left/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601125473929" />
+    <state width="1874" height="240" key="GridCell.Tab.0.right" timestamp="1601136167900">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="240" key="GridCell.Tab.0.right/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1601136167900" />
+    <state width="1874" height="240" key="GridCell.Tab.0.right/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601125473929" />
+    <state width="1874" height="240" key="GridCell.Tab.1.bottom" timestamp="1601136167901">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="240" key="GridCell.Tab.1.bottom/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1601136167901" />
+    <state width="1874" height="240" key="GridCell.Tab.1.bottom/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601125473930" />
+    <state width="1874" height="240" key="GridCell.Tab.1.center" timestamp="1601136167901">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="240" key="GridCell.Tab.1.center/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1601136167901" />
+    <state width="1874" height="240" key="GridCell.Tab.1.center/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601125473929" />
+    <state width="1874" height="240" key="GridCell.Tab.1.left" timestamp="1601136167901">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="240" key="GridCell.Tab.1.left/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1601136167901" />
+    <state width="1874" height="240" key="GridCell.Tab.1.left/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601125473929" />
+    <state width="1874" height="240" key="GridCell.Tab.1.right" timestamp="1601136167901">
+      <screen x="0" y="252" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="240" key="GridCell.Tab.1.right/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1601136167901" />
+    <state width="1874" height="240" key="GridCell.Tab.1.right/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601125473930" />
+    <state x="2475" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600790019396">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.bottom/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
-    <state width="1874" height="351" key="GridCell.Tab.0.center" timestamp="1600657510492">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.center/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510492" />
-    <state width="1874" height="351" key="GridCell.Tab.0.left" timestamp="1600657510492">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.left/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510492" />
-    <state width="1874" height="351" key="GridCell.Tab.0.right" timestamp="1600657510493">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="351" key="GridCell.Tab.0.right/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
-    <state width="1874" height="351" key="GridCell.Tab.1.bottom" timestamp="1600657510493">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.bottom/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
-    <state width="1874" height="351" key="GridCell.Tab.1.center" timestamp="1600657510493">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.center/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
-    <state width="1874" height="351" key="GridCell.Tab.1.left" timestamp="1600657510493">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.left/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
-    <state width="1874" height="351" key="GridCell.Tab.1.right" timestamp="1600657510493">
-      <screen x="1920" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1874" height="351" key="GridCell.Tab.1.right/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600657510493" />
+    <state x="2475" y="276" width="800" height="535" key="Vcs.Push.Dialog.v2/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600790019396" />
     <state width="960" height="540" key="XDebugger.FullValuePopup" timestamp="1600026970122">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -244,6 +220,10 @@
     </state>
     <state x="352" y="345" width="1205" height="874" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.252.1920.1053/1920.0.1920.1080@0.252.1920.1053" timestamp="1600626094856" />
     <state x="2272" y="95" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600635089765" />
+    <state x="2410" y="242" width="929" height="603" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1601124370081">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2410" y="242" width="929" height="603" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.252.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601124370081" />
     <state x="2572" y="94" width="615" height="891" key="find.popup" timestamp="1600627512591">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -257,15 +237,35 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+        <line-breakpoint type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/objets/User.go</url>
           <line>28</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/managers/routes/api/Api.go</url>
+          <line>118</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/managers/routes/api/Api.go</url>
+          <line>28</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/main.go</url>
-          <line>34</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/managers/auth/AuthManager.go</url>
+          <line>66</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/managers/auth/AuthManager.go</url>
+          <line>45</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/managers/routes/api/Api.go</url>
+          <line>134</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

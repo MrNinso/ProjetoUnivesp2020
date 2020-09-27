@@ -27,6 +27,9 @@ func Login(token, email string) string {
 		return ""
 	}
 
+	b, _ := bcrypt.GenerateFromPassword([]byte(token), managers.Configs.BcryptCost)
+	println(string(b))
+
 	err := bcrypt.CompareHashAndPassword([]byte(User.Password), []byte(token))
 
 	if err != nil {
@@ -38,13 +41,15 @@ func Login(token, email string) string {
 	hash := sha1.New()
 	hash.Write([]byte(token + s))
 
-	User.Secret = string(hash.Sum(nil))
+	bs, _ := bcrypt.GenerateFromPassword(hash.Sum(nil), managers.Configs.BcryptCost)
+
+	User.Secret = string(bs)
 
 	if err = database.Conn.UpdateUserByEmail(email, User); err != nil {
 		return ""
 	}
 
-	return s
+	return User.Secret
 }
 
 func Register(user *objets.User) error {

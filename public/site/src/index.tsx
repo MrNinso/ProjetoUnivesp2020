@@ -1,20 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Route, Switch, BrowserRouter} from 'react-router-dom'
+import { Route, Switch, BrowserRouter, useHistory } from 'react-router-dom'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
+
 
 import { LoginPage } from './Pages/Login/Login.page'
 import { RoomsPage } from "./Pages/Rooms/Rooms.page"
 
-var Sw: Switch | null
+var http = new XMLHttpRequest()
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <div>
-                <Switch ref={(s) => Sw = s }>
-                    <Route path="/app/login" component={ () => LoginPage(Sw) }  />
+                <Switch>
+                    <Route path="/app/login" component={  () => LoginPage(http, useHistory()) }  />
                     <Route path="/app/rooms" component={ RoomsPage }  />
                 </Switch>
             </div>

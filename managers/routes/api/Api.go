@@ -136,8 +136,8 @@ var Handles = &handles{
 		}
 
 		//login with email and password
-		email := c.GetHeader(auth.EMAIL_HEADER_KEY)
-		token = c.GetHeader(auth.TOKEN_HEADER_KEY)
+		email := c.PostForm(auth.EMAIL_HEADER_KEY)
+		token = c.PostForm(auth.TOKEN_HEADER_KEY)
 
 		if email == "" || token == "" {
 			c.String(400, "Bad Request")
@@ -162,6 +162,8 @@ var Handles = &handles{
 			"/", c.Request.Host,
 			true, false,
 		)
+
+		c.JSON(200, gin.H{})
 
 	}, false, false},
 }
