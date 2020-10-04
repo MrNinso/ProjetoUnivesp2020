@@ -10,5 +10,8 @@ build/*
 temp/
 temp/*
 
-DB/
-DB/*
+.vagrant
+.vagrant/*
+
+database
+database/*

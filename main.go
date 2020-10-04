@@ -16,8 +16,7 @@ var FrontPages = []string{"login", "room", "rooms", "admin"}
 
 func init() {
 	rand.Seed(time.Now().Unix())
-	err := docker.KillAllTerminals()
-	utils.CheckPanic(&err)
+	_ = docker.KillAllTerminals()
 }
 
 func main() {

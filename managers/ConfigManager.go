@@ -19,7 +19,7 @@ var Configs = LoadConfigs()
 
 func LoadConfigs() *Config {
 	return &Config{
-		Bind:       utils.GetEnv("BIND", ":1443"),
+		Bind:       utils.GetEnv("BIND", "0.0.0.0:1443"),
 		BcryptCost: utils.GetIntFromEnv("BCOST", 12),
 		SSL: &sslConfig{
 			CertPath: utils.GetEnv("CERTPATH", "./certs/server.crt"),
