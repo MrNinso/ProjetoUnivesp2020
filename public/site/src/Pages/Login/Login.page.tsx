@@ -3,12 +3,27 @@ import { History } from 'history'
 import Cookies from 'js-cookie';
 import { sha256 } from 'js-sha256'
 
-function sendEmail(event: FormEvent<HTMLFormElement>) {
-        if (SenhaInput !== null &&  EmailInput !== null) {
-            SenhaInput.value = require('md5')(SenhaInput.value)
-            SenhaInput.value = sha256(EmailInput.value+"_&_"+SenhaInput.value)
+var invalidLogin = false
 
-            event.persist()
+function sendLogin(event: FormEvent<HTMLButtonElement>, http: XMLHttpRequest, history: History<any>) {
+        if (SenhaInput !== null &&  EmailInput !== null) {
+            var t : string
+            t = require('md5')(SenhaInput.value)
+            t = sha256(EmailInput.value+"_&_"+t)
+
+            http.open("POST", "/api/Login/")
+
+            http.setRequestHeader("email", EmailInput.value)
+            http.setRequestHeader("token", t)
+
+            http.onload = ev => {
+                if (http.status === 200) {
+                    history.push("/app/rooms")
+                } else {
+                    invalidLogin = true
+                }
+            }
+            http.send()
         }
 }
 
@@ -20,35 +35,41 @@ export const LoginPage = (http: XMLHttpRequest, history: History<any>) => {
     let token = Cookies.get('97b31ae2cd1a382f19a7b95f5ef98016')
 
 
-    var invalidCookie = false //TODO MOSTRAR ERRO
+    var invalidCookie = false
 
     if (email !== undefined && token !== undefined) {
-        http.open("POST", "/api/Login/")
-
-        http.onload = () => {
-            if (http.status === 200) {
-                history.push("/app/rooms")
-            } else {
-                invalidCookie = true
-            }
-        }
+        http.open("POST", "/api/Login/", false)
 
         http.send()
+
+        if (http.status === 200) {
+            history.push("/app/rooms")
+        } else {
+            invalidCookie = true
+            Cookies.remove('3ic7k5irhh2az9hkig1oy3')
+            Cookies.remove('97b31ae2cd1a382f19a7b95f5ef98016')
+        }
 
     }
 
     return (
-        <form method="POST" action="/api/Login/test" onSubmit={(e) => sendEmail(e)}>
+        <div>
             <label>
-                Email:
+                Titulo:<br/>
                 <input ref={i => EmailInput = i} type="email" name="Email" required/>
             </label>
+            <br/>
             <label>
                 Senha:
+                <br/>
                 <input ref={i => SenhaInput = i} type="password" name="Token" required/>
             </label>
-
-            <input type="submit" value="enviar"/>
-        </form>
+            <br/>
+            <button onClick={(e) => sendLogin(e, http, history)}>Logar</button>
+            <br/>
+            <h2 hidden={!invalidLogin}>usuario ou senha invalido</h2>
+            <br/>
+            <h2 hidden={!invalidCookie}>Sessão espirada</h2>
+        </div>
     );
 }
