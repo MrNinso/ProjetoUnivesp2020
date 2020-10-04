@@ -65,12 +65,10 @@ func HandleTerminalSocket(c *gin.Context) {
 		msgType, reader, err := conn.NextReader()
 
 		if err != nil {
-			//TODO LOG USUARIO DESCONECTADO
 			break
 		}
 
 		if msgType == websocket.TextMessage {
-			fmt.Println("msgType == TextMessage") //TODO MELHORAR LOG
 			_ = conn.WriteMessage(websocket.TextMessage, []byte("msgType == TextMessage"))
 			continue
 		}
@@ -81,7 +79,6 @@ func HandleTerminalSocket(c *gin.Context) {
 		utils.CheckPanic(&err)
 
 		if read != 1 {
-			fmt.Println("bytes", read) //TODO MELHORAR LOG
 			return
 		}
 

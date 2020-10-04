@@ -11,7 +11,6 @@ import (
 	"github.com/gomarkdown/markdown"
 	"github.com/google/uuid"
 	"io/ioutil"
-	"os/exec"
 	"time"
 )
 
@@ -381,31 +380,5 @@ var Handles = &handles{
 	}, true, true},
 	{"ListImages", func(c *gin.Context, args string) {
 		c.JSON(200, database.Conn.ListAllImages())
-	}, true, true},
-
-	{"ListRunningContainers", func(c *gin.Context, args string) {
-		cmd := exec.Command("docker", "ps")
-
-		defer func() {
-			_ = cmd.Process.Kill()
-		}()
-
-		err := cmd.Run()
-
-		if err != nil {
-			_ = c.Error(err)
-			return
-		}
-
-		//TODO
-
-		if args == "json" {
-			c.JSON(200, RoomManager)
-		} else if args == "csv" {
-			c.String(200, RoomManager.ToCSV())
-		} else {
-			apiError(c, 400, "Bad Request")
-		}
-
 	}, true, true},
 }
