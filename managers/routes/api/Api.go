@@ -313,9 +313,14 @@ var Handles = &handles{
 			return
 		}
 
-		//TODO BUILD DA IMAGEN
-
 		img.UId = uuid.New().String()
+		img.DockerImageName = utils.GetMD5Hash(img.UId)
+
+		if err = docker.BuildImage(img.DockerImageName, img.DockerFile); err != nil {
+			apiError(c, 500, err)
+			return
+		}
+
 		img.Created = time.Now().Unix()
 
 		if err := database.Conn.CreateImage(img); err != nil {
