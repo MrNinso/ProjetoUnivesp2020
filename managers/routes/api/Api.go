@@ -4,6 +4,7 @@ import (
 	"ProjetoUnivesp2020/managers"
 	"ProjetoUnivesp2020/managers/auth"
 	"ProjetoUnivesp2020/managers/database"
+	"ProjetoUnivesp2020/managers/docker"
 	"ProjetoUnivesp2020/objets"
 	"ProjetoUnivesp2020/utils"
 	"github.com/gin-gonic/gin"
@@ -358,7 +359,25 @@ var Handles = &handles{
 		c.JSON(200, "")
 	}, true, true},
 	{"DeleteImage", func(c *gin.Context, args string) {
-		//TODO
+		if args == "" {
+			apiError(c, 400, "Bad Request")
+			return
+		}
+
+		name := database.Conn.FindImageDockerNameByUID(args)
+
+		if name == "" {
+			apiError(c, 404, "Imagem não encontrada")
+			return
+		}
+
+		if err := docker.RemoveImage(name); err != nil {
+			apiError(c, 500, err)
+			return
+		}
+
+		c.String(200, "")
+
 	}, true, true},
 	{"ListImages", func(c *gin.Context, args string) {
 		c.JSON(200, database.Conn.ListAllImages())
