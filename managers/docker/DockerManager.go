@@ -16,7 +16,7 @@ func StartTerminal(imageName string) (*objets.Termianl, error) {
 		"docker",
 		"run",
 		"-it", "--rm", "--name", id,
-		imageName,
+		imageName+":1.0",
 	)
 
 	tty, err := pty.Start(c)
@@ -53,7 +53,7 @@ func BuildImage(imageName, dockerFile string) error { //TODO TESTAR PRIMEIRO
 		return err
 	}
 
-	return exec.Command("docker", "build", "--tag", imageName+":1.0", tmpDir).Run()
+	return exec.Command("docker", "build", "--file", tmpfile.Name(), "--tag", imageName+":1.0", tmpDir).Run()
 }
 
 func KillAllTerminals() error {

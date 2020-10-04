@@ -27,9 +27,6 @@ func Login(token, email string) string {
 		return ""
 	}
 
-	b, _ := bcrypt.GenerateFromPassword([]byte(token), managers.Configs.BcryptCost)
-	println(string(b))
-
 	err := bcrypt.CompareHashAndPassword([]byte(User.Password), []byte(token))
 
 	if err != nil {

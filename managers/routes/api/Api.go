@@ -11,6 +11,7 @@ import (
 	"github.com/gomarkdown/markdown"
 	"github.com/google/uuid"
 	"io/ioutil"
+	"strconv"
 	"time"
 )
 
@@ -33,7 +34,7 @@ func (hs handles) Run(c *gin.Context) {
 				email, errEmail := c.Cookie(auth.COOKIE_EMAIL)
 
 				if errToken != nil || errEmail != nil {
-					c.String(400, "Bad Request")
+					apiError(c, 403, "Forbidden")
 					return
 				}
 
@@ -214,8 +215,8 @@ var Handles = &handles{
 		}
 
 		//login with email and password
-		email := c.PostForm(auth.EMAIL_HEADER_KEY)
-		token = c.PostForm(auth.TOKEN_HEADER_KEY)
+		email := c.GetHeader(auth.EMAIL_HEADER_KEY)
+		token = c.GetHeader(auth.TOKEN_HEADER_KEY)
 
 		if utils.CheckStringField(email, token) {
 			apiError(c, 400, "Bad Request")
@@ -321,7 +322,7 @@ var Handles = &handles{
 			return
 		}
 
-		img.Created = time.Now().Unix()
+		img.Created = strconv.FormatInt(time.Now().Unix(), 10)
 
 		if err := database.Conn.CreateImage(img); err != nil {
 			apiError(c, 500, err)

@@ -15,7 +15,7 @@ type Image struct {
 	Name            string
 	DockerImageName string
 	DockerFile      string
-	Created         int64
+	Created         string
 }
 
 func ImageFromJson(j []byte) (*Image, error) {
@@ -35,7 +35,7 @@ func ImageFromMap(m map[string]interface{}) *Image {
 		Name:            utils.IfNil(m["Name"], "").(string),
 		DockerImageName: utils.IfNil(m["DockerImageName"], "").(string),
 		DockerFile:      utils.IfNil(m["DockerFile"], "").(string),
-		Created:         utils.IfNil(m["Created"], "").(int64),
+		Created:         utils.IfNil(m["Created"], "").(string),
 	}
 }
 

@@ -10,6 +10,7 @@ build:
 	cp $(PROJECT_ROOT)/buildCert.sh $(PROJECT_BUILD)
 	mkdir -p $(PROJECT_BUILD)/public/site
 	cp -r $(PROJECT_ROOT)/public/site/build $(PROJECT_BUILD)/public/site/build
+	cp -r $(PROJECT_ROOT)/public/res $(PROJECT_BUILD)/public/res
 	cd $(PROJECT_BUILD); bash $(PROJECT_BUILD)/buildCert.sh # create SSL self-signed certificate)
 
 vagrant-build: build
