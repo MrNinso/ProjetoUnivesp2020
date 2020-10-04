@@ -11,10 +11,11 @@ const (
 )
 
 type Image struct {
-	UId        string
-	Name       string
-	DockerFile string
-	Created    int64
+	UId             string
+	Name            string
+	DockerImageName string
+	DockerFile      string
+	Created         int64
 }
 
 func ImageFromJson(j []byte) (*Image, error) {
@@ -30,18 +31,20 @@ func ImageFromJson(j []byte) (*Image, error) {
 
 func ImageFromMap(m map[string]interface{}) *Image {
 	return &Image{
-		UId:        utils.IfNil(m["UId"], "").(string),
-		Name:       utils.IfNil(m["Name"], "").(string),
-		DockerFile: utils.IfNil(m["DockerFile"], "").(string),
-		Created:    utils.IfNil(m["Created"], "").(int64),
+		UId:             utils.IfNil(m["UId"], "").(string),
+		Name:            utils.IfNil(m["Name"], "").(string),
+		DockerImageName: utils.IfNil(m["DockerImageName"], "").(string),
+		DockerFile:      utils.IfNil(m["DockerFile"], "").(string),
+		Created:         utils.IfNil(m["Created"], "").(int64),
 	}
 }
 
 func (i Image) ToMap() *map[string]interface{} {
 	return &map[string]interface{}{
-		"UId":        i.UId,
-		"Name":       i.Name,
-		"DockerFile": i.DockerFile,
-		"Created":    i.Created,
+		"UId":             i.UId,
+		"Name":            i.Name,
+		"DockerImageName": i.DockerImageName,
+		"DockerFile":      i.DockerFile,
+		"Created":         i.Created,
 	}
 }

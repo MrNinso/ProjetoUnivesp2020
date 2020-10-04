@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"crypto/md5"
+	"encoding/hex"
 	"os"
 	"strconv"
 	"strings"
@@ -58,4 +60,9 @@ func CheckStringField(f ...string) bool {
 	}
 
 	return true
+}
+
+func GetMD5Hash(text string) string {
+	hash := md5.Sum([]byte(text))
+	return hex.EncodeToString(hash[:])
 }

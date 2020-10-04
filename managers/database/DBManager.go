@@ -110,11 +110,13 @@ func (database DB) FindUserByEmail(email string) *objets.User {
 
 // Images
 func (database DB) CreateImage(img *objets.Image) error {
-	c, id := database.FindImageUIDByDockerName(img.Name)
+	id := database.FindImageIDByUID(img.Name)
 
-	if id != "" {
+	if id != -1 {
 		return errors.New("Já existe uma image")
 	}
+
+	c := database.Use(objets.IMAGE_COL_NAME)
 
 	_, err := c.Insert(*img.ToMap())
 
@@ -151,7 +153,7 @@ func (database DB) FindImageDockerNameByUID(UID string) string {
 
 	_ = database.ForEachImage(func(i int, img *objets.Image) (moveOn bool) {
 		if img.UId == UID {
-			name = img.Name
+			name = img.DockerImageName
 			return false
 		}
 
@@ -174,21 +176,6 @@ func (database DB) FindImageIDByUID(UID string) int {
 	})
 
 	return Id
-}
-
-func (database DB) FindImageUIDByDockerName(dockerName string) (*db.Col, string) {
-	Id := ""
-
-	c := database.ForEachImage(func(id int, i *objets.Image) (moveOn bool) {
-		if i.Name == dockerName {
-			Id = i.UId
-			return false
-		}
-
-		return true
-	})
-
-	return c, Id
 }
 
 func (database DB) DeleteImageIfExist(uId string) (error, *db.Col) {
