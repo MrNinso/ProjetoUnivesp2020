@@ -55,11 +55,11 @@ func ContainsAny(a string, b []string) bool {
 func CheckStringField(f ...string) bool {
 	for i := 0; i < len(f); i++ {
 		if f[i] == "" {
-			return false
+			return true
 		}
 	}
 
-	return true
+	return false
 }
 
 func GetMD5Hash(text string) string {
