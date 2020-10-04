@@ -1,4 +1,4 @@
-package podman
+package docker
 
 import (
 	"ProjetoUnivesp2020/objets"
@@ -11,7 +11,7 @@ func StartTerminal(imageID string) (*objets.Termianl, error) {
 	id := uuid.New().String()
 
 	c := exec.Command(
-		"podman",
+		"docker",
 		"run",
 		"-it", "--rm", "--name", id,
 		imageID,
@@ -26,6 +26,7 @@ func StartTerminal(imageID string) (*objets.Termianl, error) {
 	}, err
 }
 
-func KillAllTerminals() error {
-	return exec.Command("podman", "rm", "-a").Run()
-}
+//TODO CRIAR SCRIPT PARA LIMPAR OS CONTAINERS
+//func KillAllTerminals() error {
+//	return exec.Command("docker", "rm", "$(docker container ls -aq)").Run()
+//}

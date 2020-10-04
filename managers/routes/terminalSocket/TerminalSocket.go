@@ -1,7 +1,8 @@
 package terminalSocket
 
 import (
-	"ProjetoUnivesp2020/managers/podman"
+	"ProjetoUnivesp2020/managers/database"
+	"ProjetoUnivesp2020/managers/docker"
 	"ProjetoUnivesp2020/utils"
 	"encoding/json"
 	"fmt"
@@ -29,7 +30,14 @@ func HandleTerminalSocket(c *gin.Context) {
 
 	utils.CheckPanic(&err)
 
-	terminal, err := podman.StartTerminal("debian") //TODO BANCO DE IMAGENS
+	image := database.Conn.FindImageDockerNameByUID(c.Param("ID"))
+
+	if image == "" {
+		c.String(404, "Image Not Found")
+		return
+	}
+
+	terminal, err := docker.StartTerminal(image)
 
 	utils.CheckPanic(&err)
 

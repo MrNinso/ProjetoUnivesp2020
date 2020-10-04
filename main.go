@@ -2,7 +2,6 @@ package main
 
 import (
 	"ProjetoUnivesp2020/managers"
-	"ProjetoUnivesp2020/managers/podman"
 	"ProjetoUnivesp2020/managers/routes/api"
 	"ProjetoUnivesp2020/managers/routes/terminalSocket"
 	"ProjetoUnivesp2020/utils"
@@ -16,8 +15,8 @@ var FrontPages = []string{"login", "room", "rooms", "admin"}
 
 func init() {
 	rand.Seed(time.Now().Unix())
-	err := podman.KillAllTerminals()
-	utils.CheckPanic(&err)
+	//err := docker.KillAllTerminals()
+	//utils.CheckPanic(&err)
 }
 
 func main() {

@@ -5,7 +5,10 @@ import (
 	"encoding/json"
 )
 
-const USER_COL_NAME = "USERS"
+const (
+	USER_COL_NAME   = "USERS"
+	USER_HEADER_KEY = "USER"
+)
 
 type User struct {
 	Email    string
@@ -15,10 +18,15 @@ type User struct {
 	Secret   string
 }
 
-func UserFromJson(j []byte) *User {
+func UserFromJson(j []byte) (*User, error) {
 	m := make(map[string]interface{})
-	_ = json.Unmarshal(j, &m)
-	return UserFromMap(m)
+	err := json.Unmarshal(j, &m)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return UserFromMap(m), nil
 }
 
 func UserFromMap(m map[string]interface{}) *User {

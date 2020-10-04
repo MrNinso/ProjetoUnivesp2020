@@ -49,3 +49,13 @@ func ContainsAny(a string, b []string) bool {
 
 	return false
 }
+
+func CheckStringField(f ...string) bool {
+	for i := 0; i < len(f); i++ {
+		if f[i] == "" {
+			return false
+		}
+	}
+
+	return true
+}

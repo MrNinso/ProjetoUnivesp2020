@@ -1,21 +1,44 @@
 package managers
 
 import (
+	"ProjetoUnivesp2020/managers/database"
 	"ProjetoUnivesp2020/objets"
 	"ProjetoUnivesp2020/utils"
+	"errors"
 	"fmt"
 	"github.com/gomarkdown/markdown"
-	"github.com/google/uuid"
 	"io/ioutil"
 	"os"
-	"strings"
+)
+
+const (
+	ROOM_JSON_HEADER_KEY = "ROOM"
 )
 
 type RoomManager []objets.Room
 
+func AddRoomToManager(r *RoomManager, room *objets.Room) error {
+	if err := r.RenderRoom(room); err != nil {
+		return err
+	}
+
+	*r = append(*r, *room)
+	return nil
+}
+
+func RemoveRoomFromManager(r *RoomManager, pos int) {
+	(*r)[len(*r)-1], (*r)[pos] = (*r)[pos], (*r)[len(*r)-1]
+
+	*r = (*r)[:len(*r)-1]
+}
+
+func UpdateRoomFromManager(r *RoomManager, room *objets.Room) {
+	(*r)[r.GetRoomPosByID(room.GetUID())] = *room
+}
+
 func (r RoomManager) GetRoomPosByID(id string) int {
 	for i := 0; i < len(r); i++ {
-		if r[i].GetID() == id {
+		if r[i].GetUID() == id {
 			return i
 		}
 	}
@@ -31,64 +54,64 @@ func (r RoomManager) GetRoomByID(id string) *objets.Room {
 	return nil
 }
 
-func (r RoomManager) RenderRoomByID(id string) {
+func (r RoomManager) RenderRoomByID(id string) error {
 	room := r.GetRoomByID(id)
 
-	render(room.GetID(), room.GetTitle())
+	return r.RenderRoom(room)
 }
 
-func (r RoomManager) RenderRoom(room *objets.Room) {
-	render(room.GetID(), room.GetTitle())
+func (r RoomManager) RenderRoom(room *objets.Room) error {
+	if room == nil {
+		return errors.New("room é nula")
+	}
+
+	return render(room)
 }
 
 func (r RoomManager) ToCSV() string {
 	str := ""
 	for _, room := range r {
-		str += fmt.Sprintf("%s,%s\n", room.GetID(), room.GetTitle())
+		str += fmt.Sprintf("%s,%s\n", room.GetUID(), room.GetTitle())
 	}
 
 	return str
 }
 
 func RenderRooms() *RoomManager {
-	files, err := ioutil.ReadDir("./public/res/rooms")
+	if _, err := os.Stat("./public/res/temp"); !os.IsNotExist(err) {
+		err = os.RemoveAll("./public/res/temp")
+		utils.CheckPanic(&err)
+	}
+
+	err := os.Mkdir("./public/res/temp", 0777)
 
 	utils.CheckPanic(&err)
 
-	if _, errTemp := os.Stat("./public/res/temp"); !os.IsNotExist(errTemp) {
-		errTemp = os.RemoveAll("./public/res/temp")
-		utils.CheckPanic(&errTemp)
-	}
+	rs := make(RoomManager, 0)
 
-	err = os.Mkdir("./public/res/temp", 0777)
+	database.Conn.ForEachRoom(func(id int, r *objets.Room) (moveOn bool) {
+		err = render(r)
 
-	utils.CheckPanic(&err)
+		utils.CheckPanic(&err) //TODO CRIAR API DE LOG
 
-	rs := make(RoomManager, len(files))
+		rs = append(rs, *r)
 
-	for i := 0; i < len(files); i++ {
-		rs[i] = objets.NewRoom(
-			render(files[i].Name(), uuid.New().String()),
-			strings.ReplaceAll(files[i].Name(), ".md", ""),
-		)
-	}
+		return true
+	})
 
 	return &rs
 }
 
-func render(name, id string) string {
-	pathIn := "public/res/rooms/" + name
-	pathOut := "public/res/temp/" + id
+func render(r *objets.Room) error {
+	pathOut := "public/res/temp/" + r.GetUID()
 
-	content, err := ioutil.ReadFile(pathIn)
+	_, err := os.Create(pathOut)
 
-	utils.CheckPanic(&err)
+	if err != nil {
+		return err
+	}
 
-	_, _ = os.Create(pathOut)
+	err = ioutil.WriteFile(pathOut, markdown.ToHTML([]byte(r.GetContetMd()), nil, nil), 666)
 
-	err = ioutil.WriteFile(pathOut, markdown.ToHTML(content, nil, nil), 666)
-
-	utils.CheckPanic(&err)
-
-	return id
+	return err
 }

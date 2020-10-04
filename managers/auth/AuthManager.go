@@ -45,7 +45,7 @@ func Login(token, email string) string {
 
 	User.Secret = string(bs)
 
-	if err = database.Conn.UpdateUserByEmail(email, User); err != nil {
+	if err = database.Conn.UpdateUser(email, User); err != nil {
 		return ""
 	}
 

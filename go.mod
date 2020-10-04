@@ -5,7 +5,6 @@ go 1.14
 require (
 	github.com/HouzuoGuo/tiedot v0.0.0-20200330175510-6fb216206052
 	github.com/creack/pty v1.1.7
-	github.com/gin-gonic/contrib v0.0.0-20200913005814-1c32036e7ea4
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-playground/validator/v10 v10.3.0 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
