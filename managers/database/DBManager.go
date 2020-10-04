@@ -7,7 +7,7 @@ import (
 	"github.com/HouzuoGuo/tiedot/db"
 )
 
-var Conn = InitDataBase("./temp")
+var Conn = InitDataBase("./database")
 
 type DB struct {
 	*db.DB
