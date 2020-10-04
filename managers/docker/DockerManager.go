@@ -56,7 +56,6 @@ func BuildImage(imageName, dockerFile string) error { //TODO TESTAR PRIMEIRO
 	return exec.Command("docker", "build", "--tag", imageName+":1.0", tmpDir).Run()
 }
 
-//TODO CRIAR SCRIPT PARA LIMPAR OS CONTAINERS
-//func KillAllTerminals() error {
-//	return exec.Command("docker", "rm", "$(docker container ls -aq)").Run()
-//}
+func KillAllTerminals() error {
+	return exec.Command("sh", "-c", "'docker rm $(docker container ls -aq)'").Run()
+}
