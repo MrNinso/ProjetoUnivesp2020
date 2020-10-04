@@ -16,7 +16,7 @@ ReactDOM.render(
             <div>
                 <Switch>
                     <Route path="/app/login" component={  () => LoginPage(http, useHistory()) }  />
-                    <Route path="/app/rooms" component={ RoomsPage }  />
+                    <Route path="/app/rooms" component={ () => RoomsPage(http) }  />
                 </Switch>
             </div>
         </BrowserRouter>
