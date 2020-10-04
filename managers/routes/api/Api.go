@@ -146,7 +146,21 @@ var Handles = &handles{
 		c.JSON(200, room)
 	}, true, true},
 	{"DeleteRoom", func(c *gin.Context, args string) {
-		//TODO
+		if args == "" {
+			apiError(c, 400, "Bad Request")
+			return
+		}
+
+		pos := RoomManager.GetRoomPosByID(args)
+
+		if pos == -1 {
+			apiError(c, 404, "Room não encotrada")
+			return
+		}
+
+		managers.RemoveRoomFromManager(RoomManager, pos)
+
+		c.String(200, "")
 	}, true, true},
 	{"RenderRoomByUID", func(c *gin.Context, args string) {
 		if args == "" {
