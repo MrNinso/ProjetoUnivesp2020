@@ -83,7 +83,7 @@ func RenderRooms() *RoomManager {
 		utils.CheckPanic(&err)
 	}
 
-	err := os.Mkdir("./public/res/temp", 0777)
+	err := os.MkdirAll("./public/res/temp", 0777)
 
 	utils.CheckPanic(&err)
 
