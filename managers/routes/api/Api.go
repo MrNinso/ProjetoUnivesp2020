@@ -10,6 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gomarkdown/markdown"
 	"github.com/google/uuid"
+	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"strconv"
 	"time"
@@ -267,7 +268,58 @@ var Handles = &handles{
 		c.String(200, "")
 	}, true, true},
 	{"UpdateUser", func(c *gin.Context, args string) {
-		//TODO
+		jsonString := c.Request.Header.Get(objets.USER_HEADER_KEY)
+
+		if jsonString == "" {
+			apiError(c, 400, "Bad Request")
+			return
+		}
+
+		user, err := objets.UserFromJson([]byte(jsonString))
+
+		if err != nil || user == nil {
+			apiError(c, 400, err)
+			return
+		}
+
+		oldEmail := c.Request.Header.Get(objets.UPDATE_EMAIL_HEADER_KEY)
+
+		if oldEmail == "" {
+			apiError(c, 400, "Bad Request")
+		}
+
+		oldUser := database.Conn.FindUserByEmail(oldEmail)
+
+		if oldUser == nil {
+			apiError(c, 404, "User not found")
+			return
+		}
+
+		if user.Password != "" {
+			b, err := bcrypt.GenerateFromPassword([]byte(user.Password), managers.Configs.BcryptCost)
+
+			if err != nil {
+				apiError(c, 500, err)
+			}
+
+			user.Password = string(b)
+		}
+
+		if oldEmail != user.Email {
+			if id := database.Conn.FindUserIdByEmail(user.Email); id != -1 {
+				apiError(c, 400, "Email já cadastrado")
+				return
+			}
+		}
+
+		err = database.Conn.UpdateUser(oldUser.Email, user)
+
+		if err != nil {
+			apiError(c, 500, err)
+			return
+		}
+
+		c.String(200, "")
 	}, true, true},
 	{"DeleteUser", func(c *gin.Context, args string) {
 		jsonString := c.Request.Header.Get(objets.USER_HEADER_KEY)

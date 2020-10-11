@@ -6,8 +6,9 @@ import (
 )
 
 const (
-	USER_COL_NAME   = "USERS"
-	USER_HEADER_KEY = "USER"
+	USER_COL_NAME           = "USERS"
+	USER_HEADER_KEY         = "USER"
+	UPDATE_EMAIL_HEADER_KEY = "UPDATE_EMAIL"
 )
 
 type User struct {
