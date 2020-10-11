@@ -3,7 +3,7 @@ import React from "react";
 var DockerFile : HTMLTextAreaElement | null
 var NomeImagem : HTMLInputElement | null
 
-function criarSala(http: XMLHttpRequest) {
+function criarLista(http: XMLHttpRequest) {
     if (DockerFile != null && NomeImagem != null) {
         http.open("POST", "/api/CreateImage/", false)
 
@@ -44,7 +44,7 @@ export const RoomsPage = (http: XMLHttpRequest) => {
                 </label>
                 <br/>
                 <div>
-                    <button onClick={(e) => criarSala(http)}>Criar Imagem</button>
+                    <button onClick={() => criarLista(http)}>Criar Imagem</button>
                     <button>Listar Imagens</button>
                 </div>
             </fieldset>
