@@ -1,7 +1,8 @@
-package managers
+package room
 
 import (
 	"ProjetoUnivesp2020/managers/database"
+	"ProjetoUnivesp2020/managers/log"
 	"ProjetoUnivesp2020/objets"
 	"ProjetoUnivesp2020/utils"
 	"errors"
@@ -90,9 +91,11 @@ func RenderRooms() *RoomManager {
 	rs := make(RoomManager, 0)
 
 	database.Conn.ForEachRoom(func(id int, r *objets.Room) (moveOn bool) {
-		err = render(r)
+		e := render(r)
 
-		utils.CheckPanic(&err) //TODO CRIAR API DE LOG
+		if e != nil {
+			log.LogManager.GetLogLevel("docker").AppendLog(e.Error())
+		}
 
 		rs = append(rs, *r)
 

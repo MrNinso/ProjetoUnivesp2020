@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ProjetoUnivesp2020/managers"
+	"ProjetoUnivesp2020/managers/config"
 	"ProjetoUnivesp2020/managers/docker"
 	"ProjetoUnivesp2020/managers/routes/api"
 	"ProjetoUnivesp2020/managers/routes/terminalSocket"
@@ -52,8 +52,8 @@ func main() {
 	})
 
 	_ = router.RunTLS(
-		managers.Configs.Bind,
-		managers.Configs.SSL.CertPath,
-		managers.Configs.SSL.KeyPath,
+		config.Configs.Bind,
+		config.Configs.SSL.CertPath,
+		config.Configs.SSL.KeyPath,
 	)
 }

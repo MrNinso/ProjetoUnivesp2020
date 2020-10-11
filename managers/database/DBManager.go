@@ -15,7 +15,7 @@ type DB struct {
 
 // Users
 func (database DB) CreateUser(user *objets.User) error {
-	if database.FindUserIdByEmail(user.Email) == -1 {
+	if i, _ := database.FindUserByEmail(user.Email); i == -1 {
 		c := database.Use(objets.USER_COL_NAME)
 		_, err := c.Insert(*user.ToMap())
 		return err
@@ -25,7 +25,7 @@ func (database DB) CreateUser(user *objets.User) error {
 }
 
 func (database DB) UpdateUser(email string, user *objets.User) error {
-	id := database.FindUserIdByEmail(email)
+	id, _ := database.FindUserByEmail(email)
 
 	if id == -1 {
 		return errors.New("Usuario Não encontrado")
@@ -53,7 +53,7 @@ func (database DB) ListAllUsers() *[]objets.User {
 }
 
 func (database DB) DeleteUser(user *objets.User) error {
-	id := database.FindUserIdByEmail(user.Email)
+	id, _ := database.FindUserByEmail(user.Email)
 
 	if id == -1 {
 		return errors.New("Usuario não encontrado")
@@ -78,39 +78,26 @@ func (database DB) ForEachUser(f func(id int, u *objets.User) (moveOn bool)) *db
 	return c
 }
 
-func (database DB) FindUserIdByEmail(email string) int {
-	uId := -1
-
-	database.ForEachUser(func(id int, u *objets.User) (moveOn bool) {
-		if u.Email == email {
-			uId = id
-			return false
-		}
-
-		return true
-	})
-
-	return uId
-}
-
-func (database DB) FindUserByEmail(email string) *objets.User {
+func (database DB) FindUserByEmail(email string) (int, *objets.User) {
 	var U *objets.User
+	Id := -1
 
 	database.ForEachUser(func(id int, u *objets.User) (moveOn bool) {
 		if u.Email == email {
 			U = u
+			Id = id
 			return false
 		}
 
 		return true
 	})
 
-	return U
+	return Id, U
 }
 
 // Images
 func (database DB) CreateImage(img *objets.Image) error {
-	id := database.FindImageIDByUID(img.Name)
+	id, _ := database.FindImageByUID(img.Name)
 
 	if id != -1 {
 		return errors.New("Já existe uma image")
@@ -124,7 +111,7 @@ func (database DB) CreateImage(img *objets.Image) error {
 }
 
 func (database DB) UpdateImage(UID string, img *objets.Image) error {
-	id := database.FindImageIDByUID(UID)
+	id, _ := database.FindImageByUID(UID)
 
 	if id == -1 {
 		return errors.New("Imagem não encontrada")
@@ -141,41 +128,32 @@ func (database DB) ListAllImages() *[]objets.Image {
 	imgs := make([]objets.Image, 0)
 
 	_ = database.ForEachImage(func(id int, i *objets.Image) (moveOn bool) {
-		imgs = append(imgs, *i)
+		imgs = append(imgs, objets.Image{
+			UId:     i.UId,
+			Name:    i.Name,
+			Created: i.Created,
+		})
 		return true
 	})
 
 	return &imgs
 }
 
-func (database DB) FindImageDockerNameByUID(UID string) string {
-	name := ""
-
-	_ = database.ForEachImage(func(i int, img *objets.Image) (moveOn bool) {
-		if img.UId == UID {
-			name = img.DockerImageName
-			return false
-		}
-
-		return true
-	})
-
-	return name
-}
-
-func (database DB) FindImageIDByUID(UID string) int {
+func (database DB) FindImageByUID(UID string) (int, *objets.Image) {
 	Id := -1
+	var Img *objets.Image
 
 	_ = database.ForEachImage(func(id int, i *objets.Image) (moveOn bool) {
 		if i.UId == UID {
 			Id = id
+			Img = i
 			return false
 		}
 
 		return true
 	})
 
-	return Id
+	return Id, Img
 }
 
 func (database DB) DeleteImageIfExist(uId string) (error, *db.Col) {
@@ -210,7 +188,7 @@ func (database DB) ForEachImage(f func(id int, i *objets.Image) (moveOn bool)) *
 
 //Rooms
 func (database DB) CreateRoom(r *objets.Room) error {
-	if database.FindRoomIdByUId(r.GetUID()) == -1 {
+	if i, _ := database.FindRoomByUID(r.GetUID()); i == -1 {
 		c := database.Use(objets.ROOM_COL_NAME)
 		_, err := c.Insert(*r.ToMap())
 		return err
@@ -231,7 +209,7 @@ func (database DB) ListAllRooms() *[]objets.Room {
 }
 
 func (database DB) UpdateRoom(UId string, r *objets.Room) error {
-	id := database.FindRoomIdByUId(UId)
+	id, _ := database.FindRoomByUID(UId)
 
 	if id == -1 {
 		return errors.New("Usuario Não encontrado")
@@ -242,28 +220,13 @@ func (database DB) UpdateRoom(UId string, r *objets.Room) error {
 	return c.Update(id, *r.ToMap())
 }
 
-func (database DB) FindRoomByUID(UId string) *objets.Room {
+func (database DB) FindRoomByUID(UId string) (int, *objets.Room) {
 	var R *objets.Room
-
-	R = nil
-
-	database.ForEachRoom(func(id int, r *objets.Room) (moveOn bool) {
-		if r.GetUID() == UId {
-			R = r
-			return false
-		}
-
-		return true
-	})
-
-	return R
-}
-
-func (database DB) FindRoomIdByUId(UId string) int {
 	Id := -1
 
 	database.ForEachRoom(func(id int, r *objets.Room) (moveOn bool) {
 		if r.GetUID() == UId {
+			R = r
 			Id = id
 			return false
 		}
@@ -271,7 +234,7 @@ func (database DB) FindRoomIdByUId(UId string) int {
 		return true
 	})
 
-	return Id
+	return Id, R
 }
 
 func (database DB) ForEachRoom(f func(id int, r *objets.Room) (moveOn bool)) *db.Col {

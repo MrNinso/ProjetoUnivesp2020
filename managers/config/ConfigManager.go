@@ -1,4 +1,4 @@
-package managers
+package config
 
 import (
 	"ProjetoUnivesp2020/utils"
@@ -13,6 +13,7 @@ type Config struct {
 	SSL        *sslConfig
 	Bind       string
 	BcryptCost int
+	LogPath    string
 }
 
 var Configs = LoadConfigs()
@@ -25,5 +26,6 @@ func LoadConfigs() *Config {
 			CertPath: utils.GetEnv("CERTPATH", "./certs/server.crt"),
 			KeyPath:  utils.GetEnv("KEYPATH", "./certs/server.key"),
 		},
+		LogPath: utils.GetEnv("LOGPATH", "/var/log/Lab"),
 	}
 }

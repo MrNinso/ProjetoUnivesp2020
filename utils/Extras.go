@@ -8,6 +8,10 @@ import (
 	"strings"
 )
 
+type MapFunc func(index, count int, item interface{}) interface{}
+
+type FindFunc func(index int, item interface{}) bool
+
 func IfNil(a, b interface{}) interface{} {
 	if a == nil {
 		return b
@@ -65,4 +69,24 @@ func CheckStringField(f ...string) bool {
 func GetMD5Hash(text string) string {
 	hash := md5.Sum([]byte(text))
 	return hex.EncodeToString(hash[:])
+}
+
+func OneLineIf(contion bool, t, f interface{}) interface{} {
+	if contion {
+		return t
+	}
+
+	return f
+}
+
+func FindItemOnList(source interface{}, h FindFunc) interface{} {
+	s := (source).([]interface{})
+
+	for i := 0; i < len(s); i++ {
+		if h(i, s[i]) {
+			return s[i]
+		}
+	}
+
+	return nil
 }

@@ -30,14 +30,14 @@ func HandleTerminalSocket(c *gin.Context) {
 
 	utils.CheckPanic(&err)
 
-	image := database.Conn.FindImageDockerNameByUID(c.Param("ID"))
+	_, image := database.Conn.FindImageByUID(c.Param("ID"))
 
-	if image == "" {
+	if image == nil {
 		c.String(404, "Image Not Found")
 		return
 	}
 
-	terminal, err := docker.StartTerminal(image)
+	terminal, err := docker.StartTerminal(image.DockerImageName)
 
 	utils.CheckPanic(&err)
 

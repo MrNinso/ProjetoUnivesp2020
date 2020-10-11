@@ -1,12 +1,15 @@
 package api
 
 import (
-	"ProjetoUnivesp2020/managers"
 	"ProjetoUnivesp2020/managers/auth"
+	"ProjetoUnivesp2020/managers/config"
 	"ProjetoUnivesp2020/managers/database"
 	"ProjetoUnivesp2020/managers/docker"
+	"ProjetoUnivesp2020/managers/log"
+	"ProjetoUnivesp2020/managers/room"
 	"ProjetoUnivesp2020/objets"
 	"ProjetoUnivesp2020/utils"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gomarkdown/markdown"
 	"github.com/google/uuid"
@@ -80,72 +83,72 @@ func apiError(c *gin.Context, code int, erroMsg interface{}) {
 	c.JSON(code, gin.H{"error": erroMsg})
 }
 
-var RoomManager = managers.RenderRooms()
+var RoomManager = room.RenderRooms()
 
 var Handles = &handles{
 	{"CreateRoom", func(c *gin.Context, args string) {
-		jsonString := c.Request.Header.Get(managers.ROOM_JSON_HEADER_KEY)
+		jsonString := c.Request.Header.Get(room.ROOM_JSON_HEADER_KEY)
 
 		if jsonString == "" {
 			apiError(c, 400, "Bad Request")
 			return
 		}
 
-		room, err := objets.NewRoomFromJson(uuid.New().String(), []byte(jsonString))
+		r, err := objets.NewRoomFromJson(uuid.New().String(), []byte(jsonString))
 
-		if err != nil || room == nil {
+		if err != nil || r == nil {
 			apiError(c, 400, err)
 			return
 		}
 
-		if utils.CheckStringField(room.GetTitle(), room.GetContetMd(), room.GetImageUID()) {
+		if utils.CheckStringField(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
 
-		if err := database.Conn.CreateRoom(room); err != nil {
+		if err := database.Conn.CreateRoom(r); err != nil {
 			apiError(c, 500, err)
 			return
 		}
 
-		if err := managers.AddRoomToManager(RoomManager, room); err != nil {
+		if err := room.AddRoomToManager(RoomManager, r); err != nil {
 			apiError(c, 500, err)
 			return
 		}
 
-		c.JSON(200, room)
+		c.JSON(200, r)
 	}, true, true},
 	{"ListRooms", func(c *gin.Context, args string) {
 		c.JSON(200, RoomManager)
 	}, false, true},
 	{"UpdateRoom", func(c *gin.Context, args string) {
-		jsonString := c.Request.Header.Get(managers.ROOM_JSON_HEADER_KEY)
+		jsonString := c.Request.Header.Get(room.ROOM_JSON_HEADER_KEY)
 
 		if jsonString == "" || args == "" {
 			apiError(c, 400, "Bad Request")
 			return
 		}
 
-		room, err := objets.NewRoomFromJson(args, []byte(jsonString))
+		r, err := objets.NewRoomFromJson(args, []byte(jsonString))
 
-		if err != nil || room == nil {
+		if err != nil || r == nil {
 			apiError(c, 400, err)
 			return
 		}
 
-		if utils.CheckStringField(room.GetTitle(), room.GetContetMd(), room.GetImageUID()) {
+		if utils.CheckStringField(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
 
-		if err := database.Conn.UpdateRoom(args, room); err != nil {
+		if err := database.Conn.UpdateRoom(args, r); err != nil {
 			apiError(c, 500, err)
 			return
 		}
 
-		managers.UpdateRoomFromManager(RoomManager, room)
+		room.UpdateRoomFromManager(RoomManager, r)
 
-		c.JSON(200, room)
+		c.JSON(200, r)
 	}, true, true},
 	{"DeleteRoom", func(c *gin.Context, args string) {
 		if args == "" {
@@ -160,7 +163,7 @@ var Handles = &handles{
 			return
 		}
 
-		managers.RemoveRoomFromManager(RoomManager, pos)
+		room.RemoveRoomFromManager(RoomManager, pos)
 
 		c.String(200, "")
 	}, true, true},
@@ -183,7 +186,7 @@ var Handles = &handles{
 		}
 	}, true, true},
 	{"RenderAllRooms", func(c *gin.Context, args string) {
-		RoomManager = managers.RenderRooms()
+		RoomManager = room.RenderRooms()
 	}, true, true},
 	{"LiveRoomRender", func(c *gin.Context, args string) {
 		md, err := ioutil.ReadAll(c.Request.Body)
@@ -207,6 +210,12 @@ var Handles = &handles{
 			if err == nil {
 				login, admin := auth.CheckSecretToken(email, token)
 				if login {
+
+					go func() {
+						l := log.LogManager.GetLogLevel(utils.OneLineIf(admin, "infoAdmin", "infoUser").(string))
+						l.AppendLog(fmt.Sprintf("%s - entrou", email))
+					}()
+
 					c.JSON(200, gin.H{"isAdmin": admin})
 				} else {
 					apiError(c, 403, "auto login failed")
@@ -224,12 +233,17 @@ var Handles = &handles{
 			return
 		}
 
-		secret := auth.Login(token, email)
+		secret, admin := auth.Login(token, email)
 
 		if secret == "" {
 			apiError(c, 401, "Login Fail")
 			return
 		}
+
+		go func() {
+			l := log.LogManager.GetLogLevel(utils.OneLineIf(admin, "infoAdmin", "infoUser").(string))
+			l.AppendLog(fmt.Sprintf("%s - entrou", email))
+		}()
 
 		c.SetCookie(
 			auth.COOKIE_EMAIL, email, 0,
@@ -239,6 +253,12 @@ var Handles = &handles{
 
 		c.SetCookie(
 			auth.COOKIE_TOKEN, secret, 0,
+			"/", c.Request.Host,
+			true, false,
+		)
+
+		c.SetCookie(
+			auth.COOKIE_ISADMIN, utils.OneLineIf(admin, "1", "0").(string), 0,
 			"/", c.Request.Host,
 			true, false,
 		)
@@ -288,7 +308,7 @@ var Handles = &handles{
 			apiError(c, 400, "Bad Request")
 		}
 
-		oldUser := database.Conn.FindUserByEmail(oldEmail)
+		_, oldUser := database.Conn.FindUserByEmail(oldEmail)
 
 		if oldUser == nil {
 			apiError(c, 404, "User not found")
@@ -296,7 +316,7 @@ var Handles = &handles{
 		}
 
 		if user.Password != "" {
-			b, err := bcrypt.GenerateFromPassword([]byte(user.Password), managers.Configs.BcryptCost)
+			b, err := bcrypt.GenerateFromPassword([]byte(user.Password), config.Configs.BcryptCost)
 
 			if err != nil {
 				apiError(c, 500, err)
@@ -306,7 +326,7 @@ var Handles = &handles{
 		}
 
 		if oldEmail != user.Email {
-			if id := database.Conn.FindUserIdByEmail(user.Email); id != -1 {
+			if id, _ := database.Conn.FindUserByEmail(user.Email); id != -1 {
 				apiError(c, 400, "Email já cadastrado")
 				return
 			}
@@ -416,14 +436,14 @@ var Handles = &handles{
 			return
 		}
 
-		name := database.Conn.FindImageDockerNameByUID(args)
+		_, image := database.Conn.FindImageByUID(args)
 
-		if name == "" {
+		if image == nil {
 			apiError(c, 404, "Imagem não encontrada")
 			return
 		}
 
-		if err := docker.RemoveImage(name); err != nil {
+		if err := docker.RemoveImage(image.Name); err != nil {
 			apiError(c, 500, err)
 			return
 		}
@@ -433,5 +453,67 @@ var Handles = &handles{
 	}, true, true},
 	{"ListImages", func(c *gin.Context, args string) {
 		c.JSON(200, database.Conn.ListAllImages())
+	}, true, true},
+	{"GetImageByUId", func(c *gin.Context, args string) {
+		if args == "" {
+			apiError(c, 400, "Bad Request")
+			return
+		}
+		_, img := database.Conn.FindImageByUID(args)
+
+		if img == nil {
+			apiError(c, 404, "Not Found")
+			return
+		}
+
+		c.JSON(200, img)
+	}, true, true},
+	{"GetImageByUIdName", func(c *gin.Context, args string) {
+		if args == "" {
+			apiError(c, 400, "Bad Request")
+			return
+		}
+		_, img := database.Conn.FindImageByUID(args)
+
+		if img == nil {
+			apiError(c, 404, "Not Found")
+			return
+		}
+
+		c.String(200, img.Name)
+	}, true, true},
+
+	{"LimparLog", func(c *gin.Context, args string) {
+		if args == "" {
+			apiError(c, 400, "Bad Request")
+			return
+		}
+		l := log.LogManager.GetLogLevel(args)
+
+		if l == nil {
+			apiError(c, 404, "Not Found")
+			return
+		}
+
+		l.ClearLog()
+		c.String(200, "")
+	}, true, true},
+	{"ListarLogs", func(c *gin.Context, args string) {
+		c.JSON(200, log.LogManager.GetAllLogsLevels())
+	}, true, true},
+	{"ShowLogs", func(c *gin.Context, args string) {
+		if args == "" {
+			apiError(c, 400, "Bad Request")
+			return
+		}
+
+		l := log.LogManager.GetLogLevel(args)
+
+		if l == nil {
+			apiError(c, 404, "Not Found")
+			return
+		}
+
+		c.JSON(200, l.ReadLog())
 	}, true, true},
 }
