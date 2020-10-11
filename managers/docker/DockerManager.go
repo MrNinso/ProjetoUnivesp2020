@@ -32,7 +32,7 @@ func RemoveImage(dockerImageName string) error {
 	return exec.Command("docker", "rmi", "-f", dockerImageName).Run()
 }
 
-func BuildImage(imageName, dockerFile string) error { //TODO TESTAR PRIMEIRO
+func BuildImage(imageName, dockerFile string) error {
 	tmpDir, err := ioutil.TempDir("", imageName)
 
 	if err != nil {
