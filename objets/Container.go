@@ -6,7 +6,7 @@ import (
 )
 
 type Container struct {
-	Id string
+	Id      string
 	ImageID string
 
 	State struct {
@@ -16,7 +16,7 @@ type Container struct {
 }
 
 type Termianl struct {
-	Id string
+	Id  string
 	Cmd *exec.Cmd
 	TTY *os.File
 }
@@ -25,6 +25,5 @@ func (t Termianl) Kill() {
 	_ = t.Cmd.Process.Kill()
 	_, _ = t.Cmd.Process.Wait()
 	_ = t.TTY.Close()
-	_ = exec.Command("podman", "stop", t.Id).Run()
+	_ = exec.Command("docker", "stop", t.Id).Run()
 }
-
