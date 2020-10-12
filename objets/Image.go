@@ -1,8 +1,8 @@
 package objets
 
 import (
-	"ProjetoUnivesp2020/utils"
 	"encoding/json"
+	. "github.com/MrNinso/MyGoToolBox/lang/ifs"
 )
 
 const (
@@ -31,11 +31,11 @@ func ImageFromJson(j []byte) (*Image, error) {
 
 func ImageFromMap(m map[string]interface{}) *Image {
 	return &Image{
-		UId:             utils.IfNil(m["UId"], "").(string),
-		Name:            utils.IfNil(m["Name"], "").(string),
-		DockerImageName: utils.IfNil(m["DockerImageName"], "").(string),
-		DockerFile:      utils.IfNil(m["DockerFile"], "").(string),
-		Created:         utils.IfNil(m["Created"], "").(string),
+		UId:             IfNil(m["UId"], "").(string),
+		Name:            IfNil(m["Name"], "").(string),
+		DockerImageName: IfNil(m["DockerImageName"], "").(string),
+		DockerFile:      IfNil(m["DockerFile"], "").(string),
+		Created:         IfNil(m["Created"], "").(string),
 	}
 }
 

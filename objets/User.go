@@ -1,8 +1,8 @@
 package objets
 
 import (
-	"ProjetoUnivesp2020/utils"
 	"encoding/json"
+	. "github.com/MrNinso/MyGoToolBox/lang/ifs"
 )
 
 const (
@@ -32,11 +32,11 @@ func UserFromJson(j []byte) (*User, error) {
 
 func UserFromMap(m map[string]interface{}) *User {
 	return &User{
-		Email:    utils.IfNil(m["Email"], "").(string),
-		Password: utils.IfNil(m["Password"], "").(string),
-		Name:     utils.IfNil(m["Name"], "").(string),
-		IsAdmin:  utils.IfNil(m["IsAdmin"], false).(bool),
-		Secret:   utils.IfNil(m["Secret"], "").(string),
+		Email:    IfNil(m["Email"], "").(string),
+		Password: IfNil(m["Password"], "").(string),
+		Name:     IfNil(m["Name"], "").(string),
+		IsAdmin:  IfNil(m["IsAdmin"], false).(bool),
+		Secret:   IfNil(m["Secret"], "").(string),
 	}
 }
 

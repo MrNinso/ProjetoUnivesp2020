@@ -1,7 +1,7 @@
 package config
 
 import (
-	"ProjetoUnivesp2020/utils"
+	. "github.com/MrNinso/MyGoToolBox/lang/env"
 )
 
 type sslConfig struct {
@@ -20,12 +20,12 @@ var Configs = LoadConfigs()
 
 func LoadConfigs() *Config {
 	return &Config{
-		Bind:       utils.GetEnv("BIND", "0.0.0.0:1443"),
-		BcryptCost: utils.GetIntFromEnv("BCOST", 12),
+		Bind:       GetEnv("BIND", "0.0.0.0:1443"),
+		BcryptCost: GetIntFromEnv("BCOST", 12),
 		SSL: &sslConfig{
-			CertPath: utils.GetEnv("CERTPATH", "./certs/server.crt"),
-			KeyPath:  utils.GetEnv("KEYPATH", "./certs/server.key"),
+			CertPath: GetEnv("CERTPATH", "./certs/server.crt"),
+			KeyPath:  GetEnv("KEYPATH", "./certs/server.key"),
 		},
-		LogPath: utils.GetEnv("LOGPATH", "/var/log/Lab"),
+		LogPath: GetEnv("LOGPATH", "/var/log/Lab"),
 	}
 }

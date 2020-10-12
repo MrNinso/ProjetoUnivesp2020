@@ -8,8 +8,9 @@ import (
 	"ProjetoUnivesp2020/managers/log"
 	"ProjetoUnivesp2020/managers/room"
 	"ProjetoUnivesp2020/objets"
-	"ProjetoUnivesp2020/utils"
 	"fmt"
+	. "github.com/MrNinso/MyGoToolBox/lang/crypto"
+	. "github.com/MrNinso/MyGoToolBox/lang/ifs"
 	"github.com/gin-gonic/gin"
 	"github.com/gomarkdown/markdown"
 	"github.com/google/uuid"
@@ -101,7 +102,7 @@ var Handles = &handles{
 			return
 		}
 
-		if utils.CheckStringField(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
+		if IfAnyStringEmpty(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -136,7 +137,7 @@ var Handles = &handles{
 			return
 		}
 
-		if utils.CheckStringField(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
+		if IfAnyStringEmpty(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -212,7 +213,7 @@ var Handles = &handles{
 				if login {
 
 					go func() {
-						l := log.LogManager.GetLogLevel(utils.OneLineIf(admin, "infoAdmin", "infoUser").(string))
+						l := log.LogManager.GetLogLevel(IfReturn(admin, "infoAdmin", "infoUser").(string))
 						l.AppendLog(fmt.Sprintf("%s - entrou", email))
 					}()
 
@@ -228,7 +229,7 @@ var Handles = &handles{
 		email := c.GetHeader(auth.EMAIL_HEADER_KEY)
 		token = c.GetHeader(auth.TOKEN_HEADER_KEY)
 
-		if utils.CheckStringField(email, token) {
+		if IfAnyStringEmpty(email, token) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -241,7 +242,7 @@ var Handles = &handles{
 		}
 
 		go func() {
-			l := log.LogManager.GetLogLevel(utils.OneLineIf(admin, "infoAdmin", "infoUser").(string))
+			l := log.LogManager.GetLogLevel(IfReturn(admin, "infoAdmin", "infoUser").(string))
 			l.AppendLog(fmt.Sprintf("%s - entrou", email))
 		}()
 
@@ -258,7 +259,7 @@ var Handles = &handles{
 		)
 
 		c.SetCookie(
-			auth.COOKIE_ISADMIN, utils.OneLineIf(admin, "1", "0").(string), 0,
+			auth.COOKIE_ISADMIN, IfReturn(admin, "1", "0").(string), 0,
 			"/", c.Request.Host,
 			true, false,
 		)
@@ -381,13 +382,13 @@ var Handles = &handles{
 			return
 		}
 
-		if utils.CheckStringField(img.Name, img.DockerFile) {
+		if IfAnyStringEmpty(img.Name, img.DockerFile) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
 
 		img.UId = uuid.New().String()
-		img.DockerImageName = utils.GetMD5Hash(img.UId)
+		img.DockerImageName = ToMD5Hash(img.UId)
 
 		if err = docker.BuildImage(img.DockerImageName, img.DockerFile); err != nil {
 			apiError(c, 500, err)
@@ -406,7 +407,7 @@ var Handles = &handles{
 	{"UpdateImage", func(c *gin.Context, args string) {
 		jsonString := c.Request.Header.Get(objets.USER_HEADER_KEY)
 
-		if utils.CheckStringField(jsonString, args) {
+		if IfAnyStringEmpty(jsonString, args) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -418,7 +419,7 @@ var Handles = &handles{
 			return
 		}
 
-		if utils.CheckStringField(img.Name, img.DockerFile, img.UId) {
+		if IfAnyStringEmpty(img.Name, img.DockerFile, img.UId) {
 			apiError(c, 400, "Bad Request")
 			return
 		}

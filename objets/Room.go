@@ -1,8 +1,8 @@
 package objets
 
 import (
-	"ProjetoUnivesp2020/utils"
 	"encoding/json"
+	. "github.com/MrNinso/MyGoToolBox/lang/ifs"
 )
 
 const ROOM_COL_NAME = "ROOMS"
@@ -42,10 +42,10 @@ func RoomFromJson(j []byte) *Room {
 
 func RoomFromMap(m map[string]interface{}) *Room {
 	return &Room{
-		id:        utils.IfNil(m["id"], "").(string),
-		title:     utils.IfNil(m["title"], "").(string),
-		contentMd: utils.IfNil(m["contentMd"], "").(string),
-		imageUID:  utils.IfNil(m["imageUID"], "").(string),
+		id:        IfNil(m["id"], "").(string),
+		title:     IfNil(m["title"], "").(string),
+		contentMd: IfNil(m["contentMd"], "").(string),
+		imageUID:  IfNil(m["imageUID"], "").(string),
 	}
 }
 
