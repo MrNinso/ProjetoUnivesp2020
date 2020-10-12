@@ -13,12 +13,15 @@ import (
 )
 
 const (
-	ROOM_JSON_HEADER_KEY = "ROOM"
+	// Room json key in a Request Header
+	RoomJsonHeaderKey = "ROOM"
 )
 
-type RoomManager []objets.Room
+// Room Manager type
+type Manager []objets.Room
 
-func AddRoomToManager(r *RoomManager, room *objets.Room) error {
+// Add Room to end of Array (this room will not render automatic)
+func AddRoomToManager(r *Manager, room *objets.Room) error {
 	if err := r.RenderRoom(room); err != nil {
 		return err
 	}
@@ -27,17 +30,20 @@ func AddRoomToManager(r *RoomManager, room *objets.Room) error {
 	return nil
 }
 
-func RemoveRoomFromManager(r *RoomManager, pos int) {
+// Remove Room from Array (the rendered file will not deleted)
+func RemoveRoomFromManager(r *Manager, pos int) {
 	(*r)[len(*r)-1], (*r)[pos] = (*r)[pos], (*r)[len(*r)-1]
 
 	*r = (*r)[:len(*r)-1]
 }
 
-func UpdateRoomFromManager(r *RoomManager, room *objets.Room) {
+// Update Room to on Array (this room will not render automatic)
+func UpdateRoomFromManager(r *Manager, room *objets.Room) {
 	(*r)[r.GetRoomPosByID(room.GetUID())] = *room
 }
 
-func (r RoomManager) GetRoomPosByID(id string) int {
+// Get Room Position using ID
+func (r Manager) GetRoomPosByID(id string) int {
 	for i := 0; i < len(r); i++ {
 		if r[i].GetUID() == id {
 			return i
@@ -47,7 +53,8 @@ func (r RoomManager) GetRoomPosByID(id string) int {
 	return -1
 }
 
-func (r RoomManager) GetRoomByID(id string) *objets.Room {
+// Get Room using ID
+func (r Manager) GetRoomByID(id string) *objets.Room {
 	if pos := r.GetRoomPosByID(id); pos != -1 {
 		return &r[pos]
 	}
@@ -55,13 +62,15 @@ func (r RoomManager) GetRoomByID(id string) *objets.Room {
 	return nil
 }
 
-func (r RoomManager) RenderRoomByID(id string) error {
+// Render a Room with given id
+func (r Manager) RenderRoomByID(id string) error {
 	room := r.GetRoomByID(id)
 
 	return r.RenderRoom(room)
 }
 
-func (r RoomManager) RenderRoom(room *objets.Room) error {
+// Render given Room
+func (r Manager) RenderRoom(room *objets.Room) error {
 	if room == nil {
 		return errors.New("room é nula")
 	}
@@ -69,7 +78,8 @@ func (r RoomManager) RenderRoom(room *objets.Room) error {
 	return render(room)
 }
 
-func (r RoomManager) ToCSV() string {
+// Create CSV of Rooms
+func (r Manager) ToCSV() string {
 	str := ""
 	for _, room := range r {
 		str += fmt.Sprintf("%s,%s\n", room.GetUID(), room.GetTitle())
@@ -78,7 +88,8 @@ func (r RoomManager) ToCSV() string {
 	return str
 }
 
-func RenderRooms() *RoomManager {
+// Render ALL Rooms in database
+func RenderRooms() *Manager {
 	if _, err := os.Stat("./public/res/temp"); !os.IsNotExist(err) {
 		err = os.RemoveAll("./public/res/temp")
 		utils.CheckPanic(&err)
@@ -88,13 +99,13 @@ func RenderRooms() *RoomManager {
 
 	utils.CheckPanic(&err)
 
-	rs := make(RoomManager, 0)
+	rs := make(Manager, 0)
 
 	database.Conn.ForEachRoom(func(id int, r *objets.Room) (moveOn bool) {
 		e := render(r)
 
 		if e != nil {
-			log.LogManager.GetLogLevel("docker").AppendLog(e.Error())
+			log.Manager.GetLogLevel("docker").AppendLog(e.Error())
 		}
 
 		rs = append(rs, *r)

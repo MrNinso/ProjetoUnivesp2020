@@ -9,8 +9,8 @@ import (
 	"ProjetoUnivesp2020/managers/room"
 	"ProjetoUnivesp2020/objets"
 	"fmt"
-	. "github.com/MrNinso/MyGoToolBox/lang/crypto"
-	. "github.com/MrNinso/MyGoToolBox/lang/ifs"
+	"github.com/MrNinso/MyGoToolBox/lang/crypto"
+	"github.com/MrNinso/MyGoToolBox/lang/ifs"
 	"github.com/gin-gonic/gin"
 	"github.com/gomarkdown/markdown"
 	"github.com/google/uuid"
@@ -84,11 +84,12 @@ func apiError(c *gin.Context, code int, erroMsg interface{}) {
 	c.JSON(code, gin.H{"error": erroMsg})
 }
 
-var RoomManager = room.RenderRooms()
+var roomManager = room.RenderRooms()
 
+// API Handles
 var Handles = &handles{
 	{"CreateRoom", func(c *gin.Context, args string) {
-		jsonString := c.Request.Header.Get(room.ROOM_JSON_HEADER_KEY)
+		jsonString := c.Request.Header.Get(room.RoomJsonHeaderKey)
 
 		if jsonString == "" {
 			apiError(c, 400, "Bad Request")
@@ -102,7 +103,7 @@ var Handles = &handles{
 			return
 		}
 
-		if IfAnyStringEmpty(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
+		if ifs.IfAnyStringEmpty(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -112,7 +113,7 @@ var Handles = &handles{
 			return
 		}
 
-		if err := room.AddRoomToManager(RoomManager, r); err != nil {
+		if err := room.AddRoomToManager(roomManager, r); err != nil {
 			apiError(c, 500, err)
 			return
 		}
@@ -120,10 +121,10 @@ var Handles = &handles{
 		c.JSON(200, r)
 	}, true, true},
 	{"ListRooms", func(c *gin.Context, args string) {
-		c.JSON(200, RoomManager)
+		c.JSON(200, roomManager)
 	}, false, true},
 	{"UpdateRoom", func(c *gin.Context, args string) {
-		jsonString := c.Request.Header.Get(room.ROOM_JSON_HEADER_KEY)
+		jsonString := c.Request.Header.Get(room.RoomJsonHeaderKey)
 
 		if jsonString == "" || args == "" {
 			apiError(c, 400, "Bad Request")
@@ -137,7 +138,7 @@ var Handles = &handles{
 			return
 		}
 
-		if IfAnyStringEmpty(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
+		if ifs.IfAnyStringEmpty(r.GetTitle(), r.GetContetMd(), r.GetImageUID()) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -147,7 +148,7 @@ var Handles = &handles{
 			return
 		}
 
-		room.UpdateRoomFromManager(RoomManager, r)
+		room.UpdateRoomFromManager(roomManager, r)
 
 		c.JSON(200, r)
 	}, true, true},
@@ -157,14 +158,14 @@ var Handles = &handles{
 			return
 		}
 
-		pos := RoomManager.GetRoomPosByID(args)
+		pos := roomManager.GetRoomPosByID(args)
 
 		if pos == -1 {
 			apiError(c, 404, "Room não encotrada")
 			return
 		}
 
-		room.RemoveRoomFromManager(RoomManager, pos)
+		room.RemoveRoomFromManager(roomManager, pos)
 
 		c.String(200, "")
 	}, true, true},
@@ -174,8 +175,8 @@ var Handles = &handles{
 			return
 		}
 
-		if r := RoomManager.GetRoomByID(args); r != nil {
-			err := RoomManager.RenderRoom(r)
+		if r := roomManager.GetRoomByID(args); r != nil {
+			err := roomManager.RenderRoom(r)
 			if err != nil {
 				apiError(c, 500, err)
 				return
@@ -187,7 +188,7 @@ var Handles = &handles{
 		}
 	}, true, true},
 	{"RenderAllRooms", func(c *gin.Context, args string) {
-		RoomManager = room.RenderRooms()
+		roomManager = room.RenderRooms()
 	}, true, true},
 	{"LiveRoomRender", func(c *gin.Context, args string) {
 		md, err := ioutil.ReadAll(c.Request.Body)
@@ -213,7 +214,7 @@ var Handles = &handles{
 				if login {
 
 					go func() {
-						l := log.LogManager.GetLogLevel(IfReturn(admin, "infoAdmin", "infoUser").(string))
+						l := log.Manager.GetLogLevel(ifs.IfReturn(admin, "infoAdmin", "infoUser").(string))
 						l.AppendLog(fmt.Sprintf("%s - entrou", email))
 					}()
 
@@ -229,7 +230,7 @@ var Handles = &handles{
 		email := c.GetHeader(auth.EMAIL_HEADER_KEY)
 		token = c.GetHeader(auth.TOKEN_HEADER_KEY)
 
-		if IfAnyStringEmpty(email, token) {
+		if ifs.IfAnyStringEmpty(email, token) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -242,7 +243,7 @@ var Handles = &handles{
 		}
 
 		go func() {
-			l := log.LogManager.GetLogLevel(IfReturn(admin, "infoAdmin", "infoUser").(string))
+			l := log.Manager.GetLogLevel(ifs.IfReturn(admin, "infoAdmin", "infoUser").(string))
 			l.AppendLog(fmt.Sprintf("%s - entrou", email))
 		}()
 
@@ -259,7 +260,7 @@ var Handles = &handles{
 		)
 
 		c.SetCookie(
-			auth.COOKIE_ISADMIN, IfReturn(admin, "1", "0").(string), 0,
+			auth.COOKIE_ISADMIN, ifs.IfReturn(admin, "1", "0").(string), 0,
 			"/", c.Request.Host,
 			true, false,
 		)
@@ -268,7 +269,7 @@ var Handles = &handles{
 
 	}, false, false},
 	{"CreateUser", func(c *gin.Context, args string) {
-		jsonString := c.Request.Header.Get(objets.USER_HEADER_KEY)
+		jsonString := c.Request.Header.Get(objets.UserHeaderKey)
 		if jsonString == "" {
 			apiError(c, 400, "Bad Request")
 			return
@@ -289,7 +290,7 @@ var Handles = &handles{
 		c.String(200, "")
 	}, true, true},
 	{"UpdateUser", func(c *gin.Context, args string) {
-		jsonString := c.Request.Header.Get(objets.USER_HEADER_KEY)
+		jsonString := c.Request.Header.Get(objets.UserHeaderKey)
 
 		if jsonString == "" {
 			apiError(c, 400, "Bad Request")
@@ -303,7 +304,7 @@ var Handles = &handles{
 			return
 		}
 
-		oldEmail := c.Request.Header.Get(objets.UPDATE_EMAIL_HEADER_KEY)
+		oldEmail := c.Request.Header.Get(objets.UpdateEmailHeaderKey)
 
 		if oldEmail == "" {
 			apiError(c, 400, "Bad Request")
@@ -343,7 +344,7 @@ var Handles = &handles{
 		c.String(200, "")
 	}, true, true},
 	{"DeleteUser", func(c *gin.Context, args string) {
-		jsonString := c.Request.Header.Get(objets.USER_HEADER_KEY)
+		jsonString := c.Request.Header.Get(objets.UserHeaderKey)
 		if jsonString == "" {
 			apiError(c, 400, "Bad Request")
 			return
@@ -382,13 +383,13 @@ var Handles = &handles{
 			return
 		}
 
-		if IfAnyStringEmpty(img.Name, img.DockerFile) {
+		if ifs.IfAnyStringEmpty(img.Name, img.DockerFile) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
 
 		img.UId = uuid.New().String()
-		img.DockerImageName = ToMD5Hash(img.UId)
+		img.DockerImageName = crypto.ToMD5Hash(img.UId)
 
 		if err = docker.BuildImage(img.DockerImageName, img.DockerFile); err != nil {
 			apiError(c, 500, err)
@@ -405,9 +406,9 @@ var Handles = &handles{
 		c.String(200, "")
 	}, true, true},
 	{"UpdateImage", func(c *gin.Context, args string) {
-		jsonString := c.Request.Header.Get(objets.USER_HEADER_KEY)
+		jsonString := c.Request.Header.Get(objets.UserHeaderKey)
 
-		if IfAnyStringEmpty(jsonString, args) {
+		if ifs.IfAnyStringEmpty(jsonString, args) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -419,7 +420,7 @@ var Handles = &handles{
 			return
 		}
 
-		if IfAnyStringEmpty(img.Name, img.DockerFile, img.UId) {
+		if ifs.IfAnyStringEmpty(img.Name, img.DockerFile, img.UId) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -489,7 +490,7 @@ var Handles = &handles{
 			apiError(c, 400, "Bad Request")
 			return
 		}
-		l := log.LogManager.GetLogLevel(args)
+		l := log.Manager.GetLogLevel(args)
 
 		if l == nil {
 			apiError(c, 404, "Not Found")
@@ -500,7 +501,7 @@ var Handles = &handles{
 		c.String(200, "")
 	}, true, true},
 	{"ListarLogs", func(c *gin.Context, args string) {
-		c.JSON(200, log.LogManager.GetAllLogsLevels())
+		c.JSON(200, log.Manager.GetAllLogsLevels())
 	}, true, true},
 	{"ShowLogs", func(c *gin.Context, args string) {
 		if args == "" {
@@ -508,7 +509,7 @@ var Handles = &handles{
 			return
 		}
 
-		l := log.LogManager.GetLogLevel(args)
+		l := log.Manager.GetLogLevel(args)
 
 		if l == nil {
 			apiError(c, 404, "Not Found")

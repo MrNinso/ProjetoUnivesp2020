@@ -16,7 +16,7 @@ type DB struct {
 // Users
 func (database DB) CreateUser(user *objets.User) error {
 	if i, _ := database.FindUserByEmail(user.Email); i == -1 {
-		c := database.Use(objets.USER_COL_NAME)
+		c := database.Use(objets.UserColName)
 		_, err := c.Insert(*user.ToMap())
 		return err
 	} else {
@@ -31,7 +31,7 @@ func (database DB) UpdateUser(email string, user *objets.User) error {
 		return errors.New("Usuario Não encontrado")
 	}
 
-	c := database.Use(objets.USER_COL_NAME)
+	c := database.Use(objets.UserColName)
 
 	return c.Update(id, *user.ToMap())
 }
@@ -67,7 +67,7 @@ func (database DB) DeleteUserByID(id int) error {
 }
 
 func (database DB) ForEachUser(f func(id int, u *objets.User) (moveOn bool)) *db.Col {
-	c := database.Use(objets.USER_COL_NAME)
+	c := database.Use(objets.UserColName)
 
 	c.ForEachDoc(func(id int, doc []byte) (moveOn bool) {
 		u, _ := objets.UserFromJson(doc)
@@ -189,7 +189,7 @@ func (database DB) ForEachImage(f func(id int, i *objets.Image) (moveOn bool)) *
 //Rooms
 func (database DB) CreateRoom(r *objets.Room) error {
 	if i, _ := database.FindRoomByUID(r.GetUID()); i == -1 {
-		c := database.Use(objets.ROOM_COL_NAME)
+		c := database.Use(objets.RoomColName)
 		_, err := c.Insert(*r.ToMap())
 		return err
 	} else {
@@ -215,7 +215,7 @@ func (database DB) UpdateRoom(UId string, r *objets.Room) error {
 		return errors.New("Usuario Não encontrado")
 	}
 
-	c := database.Use(objets.USER_COL_NAME)
+	c := database.Use(objets.UserColName)
 
 	return c.Update(id, *r.ToMap())
 }
@@ -238,7 +238,7 @@ func (database DB) FindRoomByUID(UId string) (int, *objets.Room) {
 }
 
 func (database DB) ForEachRoom(f func(id int, r *objets.Room) (moveOn bool)) *db.Col {
-	c := database.Use(objets.ROOM_COL_NAME)
+	c := database.Use(objets.RoomColName)
 
 	c.ForEachDoc(func(id int, doc []byte) (moveOn bool) {
 		r := objets.RoomFromJson(doc)
@@ -257,7 +257,7 @@ func InitDataBase(path string) *DB {
 
 	database := &DB{d}
 
-	if database.ColExists(objets.USER_COL_NAME) {
+	if database.ColExists(objets.UserColName) {
 		return database
 	}
 
@@ -267,7 +267,7 @@ func InitDataBase(path string) *DB {
 }
 
 func createDatabase(database *DB) {
-	err := database.Create(objets.USER_COL_NAME)
+	err := database.Create(objets.UserColName)
 
 	utils.CheckPanic(&err)
 
@@ -275,7 +275,7 @@ func createDatabase(database *DB) {
 
 	utils.CheckPanic(&err)
 
-	err = database.Create(objets.ROOM_COL_NAME)
+	err = database.Create(objets.RoomColName)
 
 	utils.CheckPanic(&err)
 

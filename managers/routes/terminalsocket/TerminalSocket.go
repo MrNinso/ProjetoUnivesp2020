@@ -1,4 +1,4 @@
-package terminalSocket
+package terminalsocket
 
 import (
 	"ProjetoUnivesp2020/managers/database"
@@ -25,6 +25,7 @@ var upgrader = websocket.Upgrader{
 	WriteBufferSize: 1024,
 }
 
+// Handle Terminal WebSocket
 func HandleTerminalSocket(c *gin.Context) {
 	conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 

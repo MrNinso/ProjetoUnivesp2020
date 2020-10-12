@@ -6,11 +6,15 @@ import (
 )
 
 const (
-	USER_COL_NAME           = "USERS"
-	USER_HEADER_KEY         = "USER"
-	UPDATE_EMAIL_HEADER_KEY = "UPDATE_EMAIL"
+	// User Column name in database
+	UserColName = "USERS"
+	// User json key header in HTTP request
+	UserHeaderKey = "USER"
+	// User email key header in a update user HTTP request
+	UpdateEmailHeaderKey = "UPDATE_EMAIL"
 )
 
+// User type
 type User struct {
 	Email    string
 	Password string
@@ -19,6 +23,7 @@ type User struct {
 	Secret   string
 }
 
+// Create User from json
 func UserFromJson(j []byte) (*User, error) {
 	m := make(map[string]interface{})
 	err := json.Unmarshal(j, &m)
@@ -30,6 +35,7 @@ func UserFromJson(j []byte) (*User, error) {
 	return UserFromMap(m), nil
 }
 
+// Create User from json
 func UserFromMap(m map[string]interface{}) *User {
 	return &User{
 		Email:    IfNil(m["Email"], "").(string),
@@ -40,6 +46,7 @@ func UserFromMap(m map[string]interface{}) *User {
 	}
 }
 
+// Convert User to map
 func (u User) ToMap() *map[string]interface{} {
 	return &map[string]interface{}{
 		"Email":    u.Email,

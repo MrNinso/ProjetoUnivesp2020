@@ -9,7 +9,8 @@ import (
 	"time"
 )
 
-var LogManager = createLog()
+// LogManger entrypoint
+var Manager = createLog()
 
 type logLevel struct {
 	Name    string
