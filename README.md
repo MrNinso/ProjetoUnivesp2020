@@ -1,4 +1,4 @@
-# Projeto integrador 2020
+# Projeto integrador 2020 [![Go Report Card](https://goreportcard.com/badge/github.com/MrNinso/ProjetoUnivesp2020)](https://goreportcard.com/report/github.com/MrNinso/ProjetoUnivesp2020)
 
 ## Build
 **Dependencies**
