@@ -7,7 +7,10 @@ import (
 	"ProjetoUnivesp2020/managers/routes/terminalSocket"
 	"ProjetoUnivesp2020/utils"
 	"github.com/gin-gonic/gin"
+	"log"
 	"math/rand"
+	"net/http"
+	_ "net/http/pprof"
 	"strings"
 	"time"
 )
@@ -50,6 +53,13 @@ func main() {
 
 		c.File("./public/site/build/" + d)
 	})
+
+	go func() {
+		if gin.Mode() == gin.DebugMode {
+			log.Println("Debug mode on 0.0.0.0:6060/debug/pprof")
+			log.Println(http.ListenAndServe("0.0.0.0:6060", nil))
+		}
+	}()
 
 	_ = router.RunTLS(
 		config.Configs.Bind,
