@@ -10,20 +10,20 @@ const RoomColName = "ROOMS"
 
 // A Room entry
 type Room struct {
-	id        string
+	UId       string
 	title     string
 	contentMd string
-	imageUID  string
+	imageUId  string
 }
 
-// Create a Room struct using json with given id
+// Create a Room struct using json with given UId
 func NewRoomFromJson(id string, j []byte) (*Room, error) {
 	m := make(map[string]interface{})
 	err := json.Unmarshal(j, &m)
 
 	if err == nil {
 		r := RoomFromMap(m)
-		r.id = id
+		r.UId = id
 		return r, nil
 	}
 	return nil, err
@@ -39,16 +39,16 @@ func RoomFromJson(j []byte) *Room {
 // Create a Room from map
 func RoomFromMap(m map[string]interface{}) *Room {
 	return &Room{
-		id:        ifs.IfNil(m["id"], "").(string),
+		UId:       ifs.IfNil(m["UId"], "").(string),
 		title:     ifs.IfNil(m["title"], "").(string),
 		contentMd: ifs.IfNil(m["contentMd"], "").(string),
-		imageUID:  ifs.IfNil(m["imageUID"], "").(string),
+		imageUId:  ifs.IfNil(m["imageUId"], "").(string),
 	}
 }
 
 // Get Room UID (which is used as file name for rendered Room)
 func (r Room) GetUID() string {
-	return r.id
+	return r.UId
 }
 
 // Get Room Title
@@ -63,15 +63,19 @@ func (r Room) GetContetMd() string {
 
 // Get Docker Image UID (this is not the docker image name)
 func (r Room) GetImageUID() string {
-	return r.imageUID
+	return r.imageUId
 }
 
 // convert a Room to Map
 func (r Room) ToMap() *map[string]interface{} {
 	return &map[string]interface{}{
-		"id":        r.id,
+		"UId":       r.UId,
 		"title":     r.title,
 		"contentMd": r.contentMd,
-		"imageUID":  r.imageUID,
+		"imageUId":  r.imageUId,
 	}
+}
+
+func (r Room) ToJson() ([]byte, error) {
+	return json.Marshal(r.ToMap())
 }

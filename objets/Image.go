@@ -14,7 +14,7 @@ type Image struct {
 	UId             string
 	Name            string
 	DockerImageName string
-	DockerFile      string
+	Dockerfile      string
 	Created         string
 }
 
@@ -34,7 +34,7 @@ func ImageFromMap(m map[string]interface{}) *Image {
 		UId:             IfNil(m["UId"], "").(string),
 		Name:            IfNil(m["Name"], "").(string),
 		DockerImageName: IfNil(m["DockerImageName"], "").(string),
-		DockerFile:      IfNil(m["DockerFile"], "").(string),
+		Dockerfile:      IfNil(m["Dockerfile"], "").(string),
 		Created:         IfNil(m["Created"], "").(string),
 	}
 }
@@ -44,7 +44,7 @@ func (i Image) ToMap() *map[string]interface{} {
 		"UId":             i.UId,
 		"Name":            i.Name,
 		"DockerImageName": i.DockerImageName,
-		"DockerFile":      i.DockerFile,
+		"Dockerfile":      i.Dockerfile,
 		"Created":         i.Created,
 	}
 }

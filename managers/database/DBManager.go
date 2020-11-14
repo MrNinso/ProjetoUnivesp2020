@@ -129,9 +129,10 @@ func (database DB) ListAllImages() *[]objets.Image {
 
 	_ = database.ForEachImage(func(id int, i *objets.Image) (moveOn bool) {
 		imgs = append(imgs, objets.Image{
-			UId:     i.UId,
-			Name:    i.Name,
-			Created: i.Created,
+			UId:        i.UId,
+			Name:       i.Name,
+			Dockerfile: i.Dockerfile,
+			Created:    i.Created,
 		})
 		return true
 	})

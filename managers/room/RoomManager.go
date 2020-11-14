@@ -10,6 +10,7 @@ import (
 	"github.com/gomarkdown/markdown"
 	"io/ioutil"
 	"os"
+	"strings"
 )
 
 const (
@@ -86,6 +87,27 @@ func (r Manager) ToCSV() string {
 	}
 
 	return str
+}
+
+func (r Manager) ToJson() (string, error) {
+	var sb strings.Builder
+	sb.WriteString("[")
+	for i := 0; i < len(r); i++ {
+		j, err := r[i].ToJson()
+
+		if err != nil {
+			return "", err
+		}
+
+		sb.Write(j)
+		if i != len(r)-1 {
+			sb.WriteString(",")
+		}
+	}
+
+	sb.WriteString("]")
+
+	return sb.String(), nil
 }
 
 // Render ALL Rooms in database

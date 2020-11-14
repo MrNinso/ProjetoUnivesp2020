@@ -121,7 +121,13 @@ var Handles = &handles{
 		c.JSON(200, r)
 	}, true, true},
 	{"ListRooms", func(c *gin.Context, args string) {
-		c.JSON(200, roomManager)
+		json, err := roomManager.ToJson()
+
+		if err != nil {
+			apiError(c, 500, err.Error())
+		}
+
+		c.String(200, json)
 	}, false, true},
 	{"UpdateRoom", func(c *gin.Context, args string) {
 		jsonString := c.Request.Header.Get(room.RoomJsonHeaderKey)
@@ -383,7 +389,7 @@ var Handles = &handles{
 			return
 		}
 
-		if ifs.IfAnyStringEmpty(img.Name, img.DockerFile) {
+		if ifs.IfAnyStringEmpty(img.Name, img.Dockerfile) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
@@ -391,7 +397,7 @@ var Handles = &handles{
 		img.UId = uuid.New().String()
 		img.DockerImageName = crypto.ToMD5Hash(img.UId)
 
-		if err = docker.BuildImage(img.DockerImageName, img.DockerFile); err != nil {
+		if err = docker.BuildImage(img.DockerImageName, img.Dockerfile); err != nil {
 			apiError(c, 500, err)
 			return
 		}
@@ -420,7 +426,7 @@ var Handles = &handles{
 			return
 		}
 
-		if ifs.IfAnyStringEmpty(img.Name, img.DockerFile, img.UId) {
+		if ifs.IfAnyStringEmpty(img.Name, img.Dockerfile, img.UId) {
 			apiError(c, 400, "Bad Request")
 			return
 		}
