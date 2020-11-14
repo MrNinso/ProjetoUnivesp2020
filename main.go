@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-var frontPages = []string{"/login", "/room", "/rooms", "/admin"}
+var frontPages = []string{"/login", "/room", "/rooms", "/admin", "/demo"}
 
 func init() {
 	rand.Seed(time.Now().Unix())

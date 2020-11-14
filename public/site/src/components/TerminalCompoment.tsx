@@ -57,7 +57,6 @@ function CreateTerminal(terminal: HTMLElement | null, id: string) {
 }
 
 export class TerminalCompoment extends Component<{ id: string }> {
-
     render() {
         return <div ref={(t) => CreateTerminal(t, this.props.id)} />
     }
