@@ -3,7 +3,7 @@
 mkdir certs
 
 
-openssl genrsa -out certs/server.key 2048
+yes | openssl genrsa -out certs/server.key 2048
 
 openssl ecparam -genkey -name secp384r1 -out certs/server.key
 
