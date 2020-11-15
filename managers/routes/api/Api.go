@@ -17,6 +17,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -120,6 +121,24 @@ var Handles = &handles{
 
 		c.JSON(200, r)
 	}, true, true},
+	{"GetRoomByID", func(c *gin.Context, args string) {
+		if args == "" {
+			apiError(c, 400, "Bad Request")
+			return
+		}
+
+		room := roomManager.GetRoomByID(strings.Replace(args, "/", "", 1))
+
+		if room == nil {
+			apiError(c, 404, "Room not found")
+			return
+		}
+
+		c.JSON(200, gin.H{
+			"title":    room.GetTitle(),
+			"imageUId": room.GetImageUID(),
+		})
+	}, false, true},
 	{"ListRooms", func(c *gin.Context, args string) {
 		json, err := roomManager.ToJson()
 

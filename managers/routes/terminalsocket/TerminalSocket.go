@@ -3,7 +3,6 @@ package terminalsocket
 import (
 	"ProjetoUnivesp2020/managers/database"
 	"ProjetoUnivesp2020/managers/docker"
-	"ProjetoUnivesp2020/utils"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -29,7 +28,9 @@ var upgrader = websocket.Upgrader{
 func HandleTerminalSocket(c *gin.Context) {
 	conn, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 
-	utils.CheckPanic(&err)
+	if err != nil {
+		c.JSON(500, err)
+	}
 
 	_, image := database.Conn.FindImageByUID(c.Param("ID"))
 
@@ -40,7 +41,9 @@ func HandleTerminalSocket(c *gin.Context) {
 
 	terminal, err := docker.StartTerminal(image.DockerImageName)
 
-	utils.CheckPanic(&err)
+	if err != nil {
+		c.JSON(500, err)
+	}
 
 	defer func() {
 		_ = conn.Close()
@@ -77,7 +80,9 @@ func HandleTerminalSocket(c *gin.Context) {
 		dataTypeBuf := make([]byte, 1)
 		read, err := reader.Read(dataTypeBuf)
 
-		utils.CheckPanic(&err)
+		if err != nil {
+			c.JSON(500, err)
+		}
 
 		if read != 1 {
 			return

@@ -5,7 +5,6 @@ import (
 	"ProjetoUnivesp2020/managers/docker"
 	"ProjetoUnivesp2020/managers/routes/api"
 	"ProjetoUnivesp2020/managers/routes/terminalsocket"
-	"github.com/MrNinso/MyGoToolBox/lang/ifs"
 	"github.com/gin-gonic/gin"
 	"log"
 	"math/rand"
@@ -15,7 +14,7 @@ import (
 	"time"
 )
 
-var frontPages = []string{"/login", "/room", "/rooms", "/admin", "/demo"}
+var frontPages = []string{"login", "room", "home", "admin", "demo"}
 
 func init() {
 	rand.Seed(time.Now().Unix())
@@ -26,7 +25,7 @@ func main() {
 	router := gin.Default()
 
 	router.Static("/res", "./public/res")
-	router.Static("/md", "./public/temp")
+	router.Static("/md", "./public/res/temp")
 
 	router.GET("/terminal/:ID", terminalsocket.HandleTerminalSocket)
 
@@ -36,9 +35,11 @@ func main() {
 	router.GET("/app/*D", func(c *gin.Context) {
 		d := c.Param("D")
 
-		if b, _ := ifs.IfStringArrayItemContains(d, frontPages); b {
-			c.File("./public/site/build/index.html")
-			return
+		for i := 0; i < len(frontPages); i++ {
+			if strings.Contains(d, frontPages[i]) {
+				c.File("./public/site/build/index.html")
+				return
+			}
 		}
 
 		if strings.Contains(d, "..") {

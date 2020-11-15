@@ -7,7 +7,7 @@ import (
 
 const (
 	IMAGE_COL_NAME   = "IMAGES"
-	IMAGE_HEADER_KEY = "IMAGE"
+	IMAGE_HEADER_KEY = "Image"
 )
 
 type Image struct {

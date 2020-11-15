@@ -7,6 +7,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#div1 {
+  width: 47%;
+  height: 100%;
+  float: left;
+}
+
+#div2 {
+  width: 47%;
+  height: 100%;
+  float: right;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

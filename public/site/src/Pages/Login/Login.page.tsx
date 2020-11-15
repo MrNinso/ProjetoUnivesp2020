@@ -18,7 +18,7 @@ function sendLogin(event: FormEvent<HTMLButtonElement>, http: XMLHttpRequest, hi
 
             http.onload = () => {
                 if (http.status === 200) {
-                    history.push("/app/rooms")
+                    history.push("/app/home")
                 } else {
                     invalidLogin = true
                 }
@@ -43,7 +43,7 @@ export const LoginPage = (http: XMLHttpRequest, history: History<any>) => {
         http.send()
 
         if (http.status === 200) {
-            history.push("/app/rooms")
+            history.push("/app/home")
         } else {
             invalidCookie = true
             Cookies.remove('3ic7k5irhh2az9hkig1oy3')

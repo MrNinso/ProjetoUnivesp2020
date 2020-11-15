@@ -1,101 +1,45 @@
 import React, { useEffect } from "react";
+import { DockerImage } from "../../interfaces/DockerImage";
+import {Room} from "../../interfaces/Room";
+import { UpdateRooms, CreateDockerImage, CreateRoom, UpdateDockerImages } from "../../services/API";
 
-function updateImagesList(http: XMLHttpRequest, setListImagens: React.Dispatch<React.SetStateAction<any>>) {
-    http.open("POST", "/api/ListImages/", false)
+import "./Demo.page.css"
 
-    http.send()
-
-    if (http.status === 200) {
-        console.log("Lista de Imagens recebida", http.response)
-        setListImagens(JSON.parse(http.response).map((imagem: any) => {
-            return { UId: imagem.UId, Name: imagem.Name, Created: imagem.Created }
-        }))
-    } else {
-        console.log("erro ao carregar as imagens: ["+http.status+"] "+ http.response)
-    }
-}
-
-function updateRoomsList(http: XMLHttpRequest, setListSalas: React.Dispatch<React.SetStateAction<any>>) {
-    http.open("POST", "/api/ListRooms/", false)
-
-    http.send()
-
-    if (http.status === 200) {
-        console.log("Lista de Sala recebida: "+ http.response)
-        setListSalas(JSON.parse(http.response).map((sala: any) => {
-            return {UId: sala.UId, title: sala.title, contentMd: sala.contentMd, imageUId: sala.imageUId}
-        }))
-    } else {
-        console.error("erro ao carregar as salas: ["+http.status+"] "+ http.response)
-    }
-}
-
-function updateUsersList(http: XMLHttpRequest) {
-    console.log("TODO updateUsersList")
-}
-
-function createImage(http: XMLHttpRequest, NomeImagem: string, Dockerfile: string, setListImagens: React.Dispatch<React.SetStateAction<any>>) {
-    http.open("POST", "/api/CreateImage/", false)
-
-    http.setRequestHeader("IMAGE", JSON.stringify({
-        Name: NomeImagem,
-        Dockerfile: Dockerfile,
-    }))
-
-    http.send()
-
-    if (http.status === 200) {
-        console.log("Imagem Criada")
-        updateImagesList(http, setListImagens)
-    } else {
-        console.error("erro ao criar: ["+http.status+"] "+ http.response)
-    }
-}
-
-function createRoom(http: XMLHttpRequest, TituloSala: string, ConteudoMarkdown: string, ImagemSelecionada: string, setListSalas: React.Dispatch<React.SetStateAction<any>>) {
-    http.open("POST", "/api/CreateRoom/", false)
-
-    http.setRequestHeader("ROOM", JSON.stringify({
-        UId: "",
-        title: TituloSala,
-        contentMd: ConteudoMarkdown,
-        imageUId: ImagemSelecionada,
-    }))
-
-    http.send()
-
-    if (http.status === 200) {
-        console.log("Sala Criada")
-        updateRoomsList(http, setListSalas)
-    } else {
-        console.error("erro ao criar: ["+http.status+"] "+ http.response)
-    }
-}
-
-function listImages(http: XMLHttpRequest, ListaImagens: any, setListImagens: any) {
-    updateImagesList(http, setListImagens)
-    console.log(ListaImagens)
-}
-
-function listRooms(http: XMLHttpRequest, ListaSalas: any, setListSalas: any) {
-    updateRoomsList(http, setListSalas)
-    console.log(ListaSalas)
-}
-
-export const DemoPage = (http: XMLHttpRequest) => {
+export const DemoPage = () => {
     const [ NomeImagem, setNomeImagem ] = React.useState("")
     const [ Dockerfile, setDockerfile ] = React.useState("")
-    const [ ListaImagens, setListImagens ] = React.useState<{UId: string, Name: string, Created: bigint} | any>([])
+    const [ ListaImagens, setListImagens ] = React.useState<DockerImage | any>([])
 
     const [ TituloSala, setTituloSala ] = React.useState("")
     const [ ImagemSelecionada, setImagemSelecionada ] = React.useState("")
     const [ ConteudoMarkdown, setConteudoMarkdown ] = React.useState("")
-    const [ ListaSalas, setListaSalas ] = React.useState<{UId: string, title: string, contentMd: string, imageUId: string} | any>([])
+    const [ ListaSalas, setListaSalas ] = React.useState<Room | any>([])
 
-    useEffect(() => {
-        updateImagesList(http, setListImagens)
-        updateRoomsList(http, setListaSalas)
-    }, [http, setListImagens, setListaSalas])
+    const [ FirstUpdate, setFirstUpdate ] = React.useState<boolean>(false)
+
+    if (!FirstUpdate) {
+        UpdateDockerImages().catch((reason: any) => {
+            console.error("UpdateDockerImages: ",reason)
+        }).then(s => {
+            console.log("UpdateDockerImages: ",s)
+            setListImagens(s)
+            return Promise.resolve()
+        }).finally(() => {
+            console.log("UpdateDockerImages Finish")
+        })
+        UpdateRooms().catch((reason: any) => {
+            console.error("UpdateRooms: ",reason)
+        }).then(s => {
+            console.log("UpdateRooms: ",s)
+            setListaSalas(s)
+            return Promise.resolve()
+        }).finally(() => {
+            console.log("UpdateRooms Finish")
+
+        })
+        setFirstUpdate(true)
+    }
+
     return (
         <div>
             <h1>Demo da API</h1>
@@ -118,13 +62,18 @@ export const DemoPage = (http: XMLHttpRequest) => {
                 </label>
                 <br/>
                 <div>
-                    <button onClick={() => createImage(http, NomeImagem, Dockerfile, setListImagens)}>Criar Imagem</button>
-                    <button onClick={() => listImages(http, ListaImagens ,setListImagens)} >Listar Imagens</button>
+                    <button onClick={() => CreateDockerImage(NomeImagem, Dockerfile).then(s => {
+                        console.log("Imagem criada")
+                        setListImagens(s)
+                    })}>Criar Imagem</button>
+                    <button onClick={() => UpdateDockerImages().then(s => {setListImagens(s)
+                        console.log(s)})} >Listar Imagens</button>
                 </div>
             </fieldset>
             <fieldset>
-                <legend>Criar Sala</legend>
-                <div>
+                <legend>Salas</legend>
+                <fieldset id="div1">
+                    <legend>Criar</legend>
                     <label>
                         Titulo da sala:
                         <br/>
@@ -151,12 +100,23 @@ export const DemoPage = (http: XMLHttpRequest) => {
                     </label>
                     <div>
                         <button
-                            onClick={() => createRoom(http, TituloSala, ConteudoMarkdown, ImagemSelecionada, setListaSalas)}>
+                            onClick={() => CreateRoom(TituloSala, ConteudoMarkdown, ImagemSelecionada).then(s => {
+                                console.log("Sala Criada")
+                                setListaSalas(s)
+                            })}>
                                 Criar Sala
                         </button>
-                        <button onClick={() => listRooms(http, ListaSalas, setListaSalas)}>Listar Salas</button>
+                        <button onClick={() => UpdateRooms().then(console.log)}>Listar Salas</button>
                     </div>
-                </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Salas</legend>
+                    <div id="grid-container">
+                        {ListaSalas.map((sala: Room) => {
+                            return <a id="grid-item" href={"/app/room/"+sala.UId} >{sala.title}</a>
+                        })}
+                    </div>
+                </fieldset>
             </fieldset>
         </div>
     );
