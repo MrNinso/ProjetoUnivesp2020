@@ -19,13 +19,13 @@ func StartTerminal(imageName string) (*objets.Termianl, error) {
 		imageName+":1.0",
 	)
 
-	tty, err := pty.Start(c)
+	tty, _ := pty.Start(c)
 
 	return &objets.Termianl{
 		Id:  id,
 		Cmd: c,
 		TTY: tty,
-	}, err
+	}, nil
 }
 
 func RemoveImage(dockerImageName string) error {

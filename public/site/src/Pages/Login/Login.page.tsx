@@ -16,9 +16,9 @@ function sendLogin(event: FormEvent<HTMLButtonElement>, http: XMLHttpRequest, hi
             http.setRequestHeader("email", EmailInput.value)
             http.setRequestHeader("token", t)
 
-            http.onload = ev => {
+            http.onload = () => {
                 if (http.status === 200) {
-                    history.push("/app/rooms")
+                    history.push("/app/home")
                 } else {
                     invalidLogin = true
                 }
@@ -43,7 +43,7 @@ export const LoginPage = (http: XMLHttpRequest, history: History<any>) => {
         http.send()
 
         if (http.status === 200) {
-            history.push("/app/rooms")
+            history.push("/app/home")
         } else {
             invalidCookie = true
             Cookies.remove('3ic7k5irhh2az9hkig1oy3')
@@ -55,7 +55,7 @@ export const LoginPage = (http: XMLHttpRequest, history: History<any>) => {
     return (
         <div>
             <label>
-                Titulo:<br/>
+                Email:<br/>
                 <input ref={i => EmailInput = i} type="email" name="Email" required/>
             </label>
             <br/>

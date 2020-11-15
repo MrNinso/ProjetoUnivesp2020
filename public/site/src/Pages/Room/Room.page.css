@@ -1,0 +1,11 @@
+#tutorial {
+    position: fixed;
+    float: right;
+    right: 0;
+}
+
+#terminal {
+    height: 100%;
+    width: 49%;
+    position: fixed;
+}

@@ -10,16 +10,19 @@
     "@types/jest": "^24.0.0",
     "@types/js-cookie": "^2.2.6",
     "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
+    "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.0",
+    "@types/react-helmet": "^6.1.0",
     "@types/react-router-dom": "^5.1.5",
     "js-cookie": "^2.2.1",
     "js-sha256": "^0.9.0",
     "md5": "^2.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-select": "^3.1.0",
     "typescript": "~3.7.2",
     "xterm": "^4.9.0",
     "xterm-addon-fit": "^0.4.0"
@@ -44,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-select": "^3.0.26"
   }
 }
