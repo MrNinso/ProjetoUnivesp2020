@@ -7,7 +7,7 @@ import (
 	"github.com/HouzuoGuo/tiedot/db"
 )
 
-var Conn = InitDataBase("./database")
+var Conn = InitDataBase("./database", true)
 
 type DB struct {
 	*db.DB
@@ -251,7 +251,7 @@ func (database DB) ForEachRoom(f func(id int, r *objets.Room) (moveOn bool)) *db
 }
 
 // Database setup
-func InitDataBase(path string) *DB {
+func InitDataBase(path string, create bool) *DB {
 	d, err := db.OpenDB(path)
 
 	utils.CheckPanic(&err)
@@ -262,7 +262,11 @@ func InitDataBase(path string) *DB {
 		return database
 	}
 
-	createDatabase(database)
+	if create {
+		createDatabase(database)
+	} else {
+		return nil
+	}
 
 	return database
 }

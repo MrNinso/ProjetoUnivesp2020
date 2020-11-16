@@ -10,5 +10,6 @@ require (
 	github.com/gomarkdown/markdown v0.0.0-20201113031856-722100d81a8e
 	github.com/google/uuid v1.1.2
 	github.com/gorilla/websocket v1.4.2
+	github.com/urfave/cli/v2 v2.3.0
 	golang.org/x/crypto v0.0.0-20201112155050-0c6587e931a9
 )
