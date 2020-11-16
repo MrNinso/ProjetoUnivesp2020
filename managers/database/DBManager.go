@@ -4,6 +4,7 @@ import (
 	"ProjetoUnivesp2020/objets"
 	"ProjetoUnivesp2020/utils"
 	"errors"
+
 	"github.com/HouzuoGuo/tiedot/db"
 )
 
@@ -264,8 +265,6 @@ func InitDataBase(path string, create bool) *DB {
 
 	if create {
 		createDatabase(database)
-	} else {
-		return nil
 	}
 
 	return database
